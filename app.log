@@ -2807,13 +2807,24 @@
 2025-03-11 09:25:57,271 - INFO - 127.0.0.1 - - [11/Mar/2025 09:25:57] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=console.png&s=qrlb69pBXMOYHzSKBhMF HTTP/1.1[0m" 304 -
 2025-03-11 09:31:07,333 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/School/Academic AI Project/app.py', reloading
 2025-03-11 09:31:07,687 - INFO -  * Restarting with stat
-2025-03-11 10:01:21,354 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2025-03-11 10:09:29,128 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
-2025-03-11 10:01:21,355 - INFO - [33mPress CTRL+C to quit[0m
-2025-03-11 10:01:21,356 - INFO -  * Restarting with stat
-2025-03-11 10:01:22,972 - WARNING -  * Debugger is active!
-2025-03-11 10:01:22,982 - INFO -  * Debugger PIN: 561-524-962
-2025-03-11 10:01:23,769 - INFO - User accessed: / | Method: GET
-2025-03-11 10:01:23,774 - INFO - 127.0.0.1 - - [11/Mar/2025 10:01:23] "GET / HTTP/1.1" 200 -
-2025-03-11 10:01:41,926 - INFO - User accessed: / | Method: GET
-2025-03-11 10:01:41,927 - INFO - 127.0.0.1 - - [11/Mar/2025 10:01:41] "GET / HTTP/1.1" 200 -
+2025-03-11 10:09:29,128 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 10:09:29,129 - INFO -  * Restarting with stat
+2025-03-11 10:09:30,665 - WARNING -  * Debugger is active!
+2025-03-11 10:09:30,674 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:09:33,275 - INFO - User accessed: / | Method: GET
+2025-03-11 10:09:33,280 - INFO - 127.0.0.1 - - [11/Mar/2025 10:09:33] "GET / HTTP/1.1" 200 -
+2025-03-11 10:09:36,305 - INFO - User accessed: /manage_pdfs | Method: GET
+2025-03-11 10:09:36,308 - INFO - 127.0.0.1 - - [11/Mar/2025 10:09:36] "GET /manage_pdfs HTTP/1.1" 200 -
+2025-03-11 10:09:36,323 - INFO - 127.0.0.1 - - [11/Mar/2025 10:09:36] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=console.png&s=qrlb69pBXMOYHzSKBhMF HTTP/1.1[0m" 304 -
+2025-03-11 10:09:36,323 - INFO - 127.0.0.1 - - [11/Mar/2025 10:09:36] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-11 10:09:36,324 - INFO - 127.0.0.1 - - [11/Mar/2025 10:09:36] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-11 10:09:56,874 - INFO - User accessed: / | Method: GET
+2025-03-11 10:09:56,875 - INFO - 127.0.0.1 - - [11/Mar/2025 10:09:56] "GET / HTTP/1.1" 200 -
+2025-03-11 10:17:09,550 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-11 10:17:09,550 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 10:17:09,551 - INFO -  * Restarting with stat
+2025-03-11 10:17:11,015 - WARNING -  * Debugger is active!
+2025-03-11 10:17:11,025 - INFO -  * Debugger PIN: 561-524-962
