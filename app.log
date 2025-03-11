@@ -2800,3 +2800,10 @@
 2025-03-11 08:57:16,233 - INFO - 127.0.0.1 - - [11/Mar/2025 08:57:16] "GET /ask HTTP/1.1" 200 -
 2025-03-11 08:57:18,150 - INFO - User accessed: / | Method: GET
 2025-03-11 08:57:18,151 - INFO - 127.0.0.1 - - [11/Mar/2025 08:57:18] "GET / HTTP/1.1" 200 -
+2025-03-11 09:25:57,180 - INFO - User accessed: /manage_pdfs | Method: GET
+2025-03-11 09:25:57,190 - INFO - 127.0.0.1 - - [11/Mar/2025 09:25:57] "[35m[1mGET /manage_pdfs HTTP/1.1[0m" 500 -
+2025-03-11 09:25:57,196 - INFO - 127.0.0.1 - - [11/Mar/2025 09:25:57] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-11 09:25:57,199 - INFO - 127.0.0.1 - - [11/Mar/2025 09:25:57] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-11 09:25:57,271 - INFO - 127.0.0.1 - - [11/Mar/2025 09:25:57] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=console.png&s=qrlb69pBXMOYHzSKBhMF HTTP/1.1[0m" 304 -
+2025-03-11 09:31:07,333 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/School/Academic AI Project/app.py', reloading
+2025-03-11 09:31:07,687 - INFO -  * Restarting with stat

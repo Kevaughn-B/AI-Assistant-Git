@@ -1152,6 +1152,105 @@ def extract_text_route():
 
 @app.route('/manage_pdfs')
 def manage_pdfs():
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT id, filename, uploaded_at FROM pdf_uploads ORDER BY uploaded_at DESC")
+    files = cursor.fetchall()
+    conn.close()
+
+    file_list = "".join([f"""
+        <tr>
+            <td>{file[1]}</td>
+            <td>{file[2]}</td>
+            <td><a href='/view_text/{file[1]}'>View</a></td>
+            <td><a href='/delete_pdf/{file[0]}'>Delete</a></td>
+        </tr>""" for file in files])
+
+    return f'''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manage Uploaded PDFs</title>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+                color: #333;
+                text-align: center;
+                scroll-behavior: smooth;
+            }}
+            header {{
+                background-color: #0078D7;
+                color: white;
+                padding: 1rem;
+            }}
+            header h1 {{
+                margin: 0;
+            }}
+            .container {{
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 1rem;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }}
+            table {{
+                width: 80%;
+                margin: 20px auto;
+                border-collapse: collapse;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }}
+            th, td {{
+                border: 1px solid #ccc;
+                padding: 10px;
+                text-align: left;
+            }}
+            th {{
+                background-color: #0078D7;
+                color: white;
+            }}
+            a {{
+                display: inline-block;
+                margin: 20px 0;
+                padding: 10px 20px;
+                background-color: #0078D7;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+            }}
+            a:hover {{
+                background-color: #005BB5;
+            }}
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Manage Uploaded PDFs</h1>
+        </header>
+        <div class="container">
+            <table>
+                <tr>
+                    <th>Filename</th>
+                    <th>Uploaded At</th>
+                    <th>Actions</th>
+                </tr>
+                {file_list}
+            </table>
+        </div>
+        <br>
+        <a href="/">Back to Home</a>
+    </body>
+    </html>
+    '''
+
     conn = sqlite3.connect('data.db')
     cursor = conn.cursor()
     cursor.execute("SELECT id, filename, uploaded_at FROM pdf_uploads ORDER BY uploaded_at DESC")
