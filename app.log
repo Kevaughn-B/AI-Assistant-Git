@@ -2828,3 +2828,133 @@
 2025-03-11 10:17:09,551 - INFO -  * Restarting with stat
 2025-03-11 10:17:11,015 - WARNING -  * Debugger is active!
 2025-03-11 10:17:11,025 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:19:00,521 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-11 10:19:00,527 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 10:19:00,527 - INFO -  * Restarting with stat
+2025-03-11 10:19:01,986 - WARNING -  * Debugger is active!
+2025-03-11 10:19:01,994 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:19:03,162 - INFO - User accessed: / | Method: GET
+2025-03-11 10:19:03,166 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:03] "GET / HTTP/1.1" 200 -
+2025-03-11 10:19:06,093 - INFO - User accessed: /dashboard | Method: GET
+2025-03-11 10:19:06,097 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:06] "GET /dashboard HTTP/1.1" 200 -
+2025-03-11 10:19:29,279 - INFO - User accessed: / | Method: GET
+2025-03-11 10:19:29,281 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:29] "GET / HTTP/1.1" 200 -
+2025-03-11 10:19:31,642 - INFO - User accessed: /ask | Method: GET
+2025-03-11 10:19:31,642 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:31] "GET /ask HTTP/1.1" 200 -
+2025-03-11 10:19:35,854 - INFO - User accessed: / | Method: GET
+2025-03-11 10:19:35,855 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:35] "GET / HTTP/1.1" 200 -
+2025-03-11 10:19:37,241 - INFO - User accessed: /logout | Method: GET
+2025-03-11 10:19:37,241 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:37] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-03-11 10:19:37,246 - INFO - User accessed: / | Method: GET
+2025-03-11 10:19:37,247 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:37] "GET / HTTP/1.1" 200 -
+2025-03-11 10:19:38,434 - INFO - User accessed: /login | Method: GET
+2025-03-11 10:19:38,435 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:38] "GET /login HTTP/1.1" 200 -
+2025-03-11 10:19:42,768 - INFO - User accessed: /login | Method: POST
+2025-03-11 10:19:43,012 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:43] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-03-11 10:19:43,113 - INFO - User accessed: /dashboard | Method: GET
+2025-03-11 10:19:43,116 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:43] "GET /dashboard HTTP/1.1" 200 -
+2025-03-11 10:19:49,087 - INFO - User accessed: / | Method: GET
+2025-03-11 10:19:49,089 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:49] "GET / HTTP/1.1" 200 -
+2025-03-11 10:19:51,102 - INFO - User accessed: /manage_pdfs | Method: GET
+2025-03-11 10:19:51,105 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:51] "GET /manage_pdfs HTTP/1.1" 200 -
+2025-03-11 10:19:51,120 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:51] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=console.png&s=qrlb69pBXMOYHzSKBhMF HTTP/1.1[0m" 304 -
+2025-03-11 10:19:51,122 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:51] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-11 10:19:51,122 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:51] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-11 10:19:53,934 - INFO - User accessed: /search | Method: GET
+2025-03-11 10:19:53,935 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:53] "GET /search HTTP/1.1" 200 -
+2025-03-11 10:19:58,184 - INFO - User accessed: /logout | Method: GET
+2025-03-11 10:19:58,185 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:58] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-03-11 10:19:58,194 - INFO - User accessed: / | Method: GET
+2025-03-11 10:19:58,195 - INFO - 127.0.0.1 - - [11/Mar/2025 10:19:58] "GET / HTTP/1.1" 200 -
+2025-03-11 10:20:00,404 - INFO - User accessed: /login | Method: GET
+2025-03-11 10:20:00,405 - INFO - 127.0.0.1 - - [11/Mar/2025 10:20:00] "GET /login HTTP/1.1" 200 -
+2025-03-11 10:20:07,169 - INFO - User accessed: /login | Method: POST
+2025-03-11 10:20:07,433 - INFO - 127.0.0.1 - - [11/Mar/2025 10:20:07] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-03-11 10:20:07,492 - INFO - User accessed: /dashboard | Method: GET
+2025-03-11 10:20:07,494 - INFO - 127.0.0.1 - - [11/Mar/2025 10:20:07] "GET /dashboard HTTP/1.1" 200 -
+2025-03-11 10:30:19,044 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-11 10:30:19,044 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 10:30:19,045 - INFO -  * Restarting with stat
+2025-03-11 10:30:20,624 - WARNING -  * Debugger is active!
+2025-03-11 10:30:20,632 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:30:29,959 - INFO - User accessed: / | Method: GET
+2025-03-11 10:30:29,968 - INFO - 127.0.0.1 - - [11/Mar/2025 10:30:29] "GET / HTTP/1.1" 200 -
+2025-03-11 10:30:32,396 - INFO - User accessed: /recommend | Method: GET
+2025-03-11 10:30:32,396 - INFO - 127.0.0.1 - - [11/Mar/2025 10:30:32] "GET /recommend HTTP/1.1" 200 -
+2025-03-11 10:30:39,153 - INFO - User accessed: /manage_entries | Method: GET
+2025-03-11 10:30:39,157 - INFO - 127.0.0.1 - - [11/Mar/2025 10:30:39] "GET /manage_entries HTTP/1.1" 200 -
+2025-03-11 10:30:43,783 - INFO - User accessed: / | Method: GET
+2025-03-11 10:30:43,784 - INFO - 127.0.0.1 - - [11/Mar/2025 10:30:43] "GET / HTTP/1.1" 200 -
+2025-03-11 10:30:46,014 - INFO - User accessed: /manage_pdfs | Method: GET
+2025-03-11 10:30:46,016 - INFO - 127.0.0.1 - - [11/Mar/2025 10:30:46] "GET /manage_pdfs HTTP/1.1" 200 -
+2025-03-11 10:30:46,028 - INFO - 127.0.0.1 - - [11/Mar/2025 10:30:46] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-11 10:30:46,029 - INFO - 127.0.0.1 - - [11/Mar/2025 10:30:46] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=console.png&s=qrlb69pBXMOYHzSKBhMF HTTP/1.1[0m" 304 -
+2025-03-11 10:30:46,029 - INFO - 127.0.0.1 - - [11/Mar/2025 10:30:46] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-11 10:30:49,349 - INFO - User accessed: /view_text/Software_Project_Documentation_Guidelines.pdf | Method: GET
+2025-03-11 10:30:49,351 - INFO - 127.0.0.1 - - [11/Mar/2025 10:30:49] "GET /view_text/Software_Project_Documentation_Guidelines.pdf HTTP/1.1" 200 -
+2025-03-11 10:30:51,318 - INFO - User accessed: / | Method: GET
+2025-03-11 10:30:51,319 - INFO - 127.0.0.1 - - [11/Mar/2025 10:30:51] "GET / HTTP/1.1" 200 -
+2025-03-11 10:31:21,761 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-11 10:31:21,762 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 10:31:21,762 - INFO -  * Restarting with stat
+2025-03-11 10:31:23,309 - WARNING -  * Debugger is active!
+2025-03-11 10:31:23,319 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:31:25,401 - INFO - User accessed: /recommend | Method: GET
+2025-03-11 10:31:25,403 - INFO - 127.0.0.1 - - [11/Mar/2025 10:31:25] "GET /recommend HTTP/1.1" 200 -
+2025-03-11 10:31:27,711 - INFO - User accessed: / | Method: GET
+2025-03-11 10:31:27,717 - INFO - 127.0.0.1 - - [11/Mar/2025 10:31:27] "GET / HTTP/1.1" 200 -
+2025-03-11 10:38:04,377 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/School/Academic AI Project/app.py', reloading
+2025-03-11 10:38:04,704 - INFO -  * Restarting with stat
+2025-03-11 10:38:06,876 - WARNING -  * Debugger is active!
+2025-03-11 10:38:06,886 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:38:07,903 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/School/Academic AI Project/app.py', reloading
+2025-03-11 10:38:08,187 - INFO -  * Restarting with stat
+2025-03-11 10:38:09,775 - WARNING -  * Debugger is active!
+2025-03-11 10:38:09,782 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:38:13,238 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-11 10:38:13,238 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 10:38:13,239 - INFO -  * Restarting with stat
+2025-03-11 10:38:14,780 - WARNING -  * Debugger is active!
+2025-03-11 10:38:14,788 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:38:16,518 - INFO - User accessed: / | Method: GET
+2025-03-11 10:38:16,527 - INFO - 127.0.0.1 - - [11/Mar/2025 10:38:16] "GET / HTTP/1.1" 200 -
+2025-03-11 10:38:18,705 - INFO - User accessed: /recommend | Method: GET
+2025-03-11 10:38:18,706 - INFO - 127.0.0.1 - - [11/Mar/2025 10:38:18] "GET /recommend HTTP/1.1" 200 -
+2025-03-11 10:38:26,438 - INFO - User accessed: /recommend | Method: POST
+2025-03-11 10:38:27,760 - INFO - 127.0.0.1 - - [11/Mar/2025 10:38:27] "POST /recommend HTTP/1.1" 200 -
+2025-03-11 10:38:35,599 - INFO - User accessed: /recommend | Method: GET
+2025-03-11 10:38:35,600 - INFO - 127.0.0.1 - - [11/Mar/2025 10:38:35] "GET /recommend HTTP/1.1" 200 -
+2025-03-11 10:39:27,635 - INFO - User accessed: /extract_text | Method: GET
+2025-03-11 10:39:27,636 - INFO - 127.0.0.1 - - [11/Mar/2025 10:39:27] "GET /extract_text HTTP/1.1" 200 -
+2025-03-11 10:39:40,875 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/School/Academic AI Project/app.py', reloading
+2025-03-11 10:39:41,168 - INFO -  * Restarting with stat
+2025-03-11 10:39:50,427 - WARNING -  * Debugger is active!
+2025-03-11 10:39:50,437 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:40:07,653 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/School/Academic AI Project/app.py', reloading
+2025-03-11 10:40:07,961 - INFO -  * Restarting with stat
+2025-03-11 10:40:09,944 - WARNING -  * Debugger is active!
+2025-03-11 10:40:09,952 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:40:37,305 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/School/Academic AI Project/app.py', reloading
+2025-03-11 10:40:37,601 - INFO -  * Restarting with stat
+2025-03-11 10:40:49,499 - WARNING -  * Debugger is active!
+2025-03-11 10:40:49,507 - INFO -  * Debugger PIN: 561-524-962
+2025-03-11 10:41:03,950 - INFO - User accessed: /extract_text | Method: GET
+2025-03-11 10:41:03,952 - INFO - 127.0.0.1 - - [11/Mar/2025 10:41:03] "GET /extract_text HTTP/1.1" 200 -
+2025-03-11 10:41:06,233 - INFO - User accessed: /extract_text | Method: GET
+2025-03-11 10:41:06,234 - INFO - 127.0.0.1 - - [11/Mar/2025 10:41:06] "GET /extract_text HTTP/1.1" 200 -
+2025-03-11 10:41:07,389 - INFO - User accessed: /recommend | Method: GET
+2025-03-11 10:41:07,389 - INFO - 127.0.0.1 - - [11/Mar/2025 10:41:07] "GET /recommend HTTP/1.1" 200 -
+2025-03-11 10:41:08,701 - INFO - User accessed: /ask | Method: GET
+2025-03-11 10:41:08,702 - INFO - 127.0.0.1 - - [11/Mar/2025 10:41:08] "GET /ask HTTP/1.1" 200 -
+2025-03-11 10:41:09,884 - INFO - User accessed: /contact | Method: GET
+2025-03-11 10:41:09,885 - INFO - 127.0.0.1 - - [11/Mar/2025 10:41:09] "GET /contact HTTP/1.1" 200 -
+2025-03-11 10:41:11,133 - INFO - User accessed: / | Method: GET
+2025-03-11 10:41:11,138 - INFO - 127.0.0.1 - - [11/Mar/2025 10:41:11] "GET / HTTP/1.1" 200 -
+2025-03-11 10:41:12,828 - INFO - User accessed: /dashboard | Method: GET
+2025-03-11 10:41:12,832 - INFO - 127.0.0.1 - - [11/Mar/2025 10:41:12] "GET /dashboard HTTP/1.1" 200 -
+2025-03-11 10:41:15,083 - INFO - User accessed: / | Method: GET
+2025-03-11 10:41:15,083 - INFO - 127.0.0.1 - - [11/Mar/2025 10:41:15] "GET / HTTP/1.1" 200 -

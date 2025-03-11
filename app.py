@@ -135,6 +135,30 @@ def hash_password(password):
 def verify_password(password, hashed):
     return bcrypt.checkpw(password.encode('utf-8'), hashed.encode('utf-8'))
 
+def search_google_books(query):
+    api_url = "https://www.googleapis.com/books/v1/volumes"
+    params = {
+        "q": query,
+        "maxResults": 5
+    }
+    response = requests.get(api_url, params=params)
+    if response.status_code == 200:
+        data = response.json()
+        results = []
+        for item in data.get('items', []):
+            volume_info = item.get('volumeInfo', {})
+            title = volume_info.get('title', 'No Title')
+            authors = ", ".join(volume_info.get('authors', []))
+            info_link = volume_info.get('infoLink', '#')
+            results.append({
+                "title": f"{title} by {authors}" if authors else title,
+                "link": info_link,
+                "type": "Google Books"
+            })
+        return results
+    else:
+        return []
+
 EXTRACTED_TEXT_FOLDER = os.path.expanduser("~/Downloads")
 
 @app.route('/', methods=['GET'])
@@ -640,6 +664,115 @@ def search():
         </html>
         '''
 
+@app.route('/manage_entries')
+def manage_entries():
+    if 'username' not in session:
+        return "<h1>Please log in first.</h1><a href='/login'>Login</a>"
+    
+    username = session['username']
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT id, query, answer, submitted_at FROM user_queries WHERE username = ? ORDER BY submitted_at DESC", (username,))
+    questions = cursor.fetchall()
+    
+    cursor.execute("SELECT id, query, recommendation, timestamp FROM recommendations WHERE username = ? ORDER BY timestamp DESC", (username,))
+    recs = cursor.fetchall()
+    
+    conn.close()
+    
+    questions_html = "".join(
+        f"<tr><td>{q[1]}</td><td>{q[2]}</td><td>{q[3]}</td><td><a href='/delete_query/{q[0]}'>Delete</a></td></tr>"
+        for q in questions
+    )
+    
+    recs_html = "".join(
+        f"<tr><td>{r[1]}</td><td>{r[2]}</td><td>{r[3]}</td><td><a href='/delete_recommendation/{r[0]}'>Delete</a></td></tr>"
+        for r in recs
+    )
+    
+    return f'''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manage Your Entries</title>
+        <style>
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 20px;
+        }}
+        table {{
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }}
+        th, td {{
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }}
+        th {{
+            background-color: #0078D7;
+            color: white;
+        }}
+        a {{
+            color: #0078D7;
+            text-decoration: none;
+        }}
+        a:hover {{
+            color: #005BB5;
+        }}
+        </style>
+    </head>
+    <body>
+        <h1>Manage Your Entries</h1>
+        
+        <h2>Your Past Questions</h2>
+        <table>
+            <tr><th>Question</th><th>Answer</th><th>Asked At</th><th>Action</th></tr>
+            {questions_html if questions_html else "<tr><td colspan='4'>No questions found.</td></tr>"}
+        </table>
+        <h2>Your Past Recommendations</h2>
+        <table>
+            <tr><th>Query</th><th>Recommendation</th><th>Time</th><th>Action</th></tr>
+            {recs_html if recs_html else "<tr><td colspan='4'>No recommendations found.</td></tr>"}
+        </table>
+        <br><a href="/">Back to Home</a>
+    </body>
+    </html>
+    '''
+
+@app.route('/delete_query/<int:query_id>')
+def delete_query(query_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    username = session['username']
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM user_queries WHERE id = ? AND username = ?", (query_id, username))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('manage_entries'))
+
+@app.route('/delete_recommendation/<int:rec_id>')
+def delete_recommendation(rec_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    username = session['username']
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM recommendations WHERE id = ? AND username = ?", (rec_id, username))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('manage_entries'))
+
 @app.route('/ask', methods=['GET', 'POST'])
 def ask():
     if request.method == 'GET':
@@ -844,12 +977,12 @@ def recommend_route():
     if request.method == 'GET':
         return '''
         <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Get Recommendations</title>
-            <style>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Extract Text from PDF</title>
+        <style>
             body {
                 font-family: Arial, sans-serif;
                 margin: 0;
@@ -857,7 +990,6 @@ def recommend_route():
                 background-color: #f4f4f9;
                 color: #333;
                 text-align: center;
-                scroll-behavior: smooth;
             }
             header {
                 background-color: #0078D7;
@@ -870,11 +1002,6 @@ def recommend_route():
             main {
                 margin: 2rem;
             }
-            section {
-            padding: 100px;
-            margin: 50px 0;
-            border: 1px solid #ccc;
-        }
             .container {
                 max-width: 600px;
                 margin: 0 auto;
@@ -891,7 +1018,6 @@ def recommend_route():
                 color: white;
                 text-decoration: none;
                 border-radius: 5px;
-                transition: background-color 0.3s ease;
             }
             a:hover {
                 background-color: #005BB5;
@@ -902,11 +1028,10 @@ def recommend_route():
                 color: #666;
             }
         </style>
-        
-        </head>
-        <body>
-        <header>
-            <h1>Academic Recommendations</h1>
+    </head>
+    <body>
+            <header>
+                <h1>Academic Recommendations</h1>
             </header>
             <header style="display: flex; justify-content: space-between; align-items: center; background-color: #0078D7; color: white;">
                 <div style="display: flex; justify-content: space-between; align-items: left;">
@@ -934,7 +1059,6 @@ def recommend_route():
         
         username = session['username']
         query = request.form.get('query')
-
         if not query:
             return '''
             <!DOCTYPE html>
@@ -953,19 +1077,22 @@ def recommend_route():
         conn.commit()
 
         local_results = get_local_recommendations(query)
+        duckduckgo_results = search_duckduckgo(query)
+        google_books_results = search_google_books(query)
 
-        web_results = search_duckduckgo(query)
-
-        combined_results = local_results + web_results
+        combined_results = local_results + duckduckgo_results + google_books_results
 
         if combined_results:
             recommendation_text = combined_results[0]["title"]
-            cursor.execute("INSERT INTO recommendations (username, query, recommendation) VALUES (?, ?, ?)", 
-                (username, query, recommendation_text))
+            cursor.execute("INSERT INTO recommendations (username, query, recommendation, link) VALUES (?, ?, ?, ?)", 
+                (username, query, recommendation_text, combined_results[0]["link"]))
             conn.commit()
         conn.close()
 
-        recommendations_html = ''.join(f'<li><b>{rec["type"]}:</b> <a href="{rec["link"]}" target="_blank">{rec["title"]}</a></li>' for rec in combined_results)
+        recommendations_html = ''.join(
+            f'<li><b>{rec["type"]}:</b> <a href="{rec["link"]}" target="_blank">{rec["title"]}</a></li>' 
+            for rec in combined_results
+        )
 
         return f'''
         <!DOCTYPE html>
@@ -975,81 +1102,35 @@ def recommend_route():
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Recommendations</title>
             <style>
-            body {{
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f4f4f9;
-                color: #333;
-                text-align: center;
-                scroll-behavior: smooth;
-            }}
-            header {{
-                background-color: #0078D7;
-                color: white;
-                padding: 1rem;
-            }}
-            header h1 {{
-                margin: 0;
-            }}
-            main {{
-                margin: 2rem;
-            }}
-            section {{
-            padding: 100px;
-            margin: 50px 0;
-            border: 1px solid #ccc;
-        }}
-            .container {{
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 1rem;
-                background: white;
-                border-radius: 8px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }}
-            a {{
-                display: inline-block;
-                margin: 1rem 0;
-                padding: 0.75rem 1.5rem;
-                background-color: #0078D7;
-                color: white;
-                text-decoration: none;
-                border-radius: 5px;
-                transition: background-color 0.3s ease;
-            }}
-            a:hover {{
-                background-color: #005BB5;
-            }}
-            footer {{
-                margin-top: 2rem;
-                font-size: 0.9rem;
-                color: #666;
-            }}
-        </style>
-        
+                body {{
+                    font-family: Arial, sans-serif;
+                    background-color: #f4f4f9;
+                    color: #333;
+                    text-align: center;
+                }}
+                ul {{
+                    list-style-type: none;
+                    padding: 0;
+                }}
+                li {{
+                    margin: 10px 0;
+                }}
+                a {{
+                    color: #0078D7;
+                    text-decoration: none;
+                }}
+                a:hover {{
+                    text-decoration: underline;
+                }}
+            </style>
         </head>
         <body>
-        <header>
-            <h1>Academic Recommendations</h1>
-            </header>
-            <header style="display: flex; justify-content: space-between; align-items: center; background-color: #0078D7; color: white;">
-                <div style="display: flex; justify-content: space-between; align-items: left;">
-                    <a href="/">Home</a>
-                    <a href="/ask">Ask a Question</a>
-                    <a href="/recommend">Get Recommendations</a>
-                    <a href="/extract_text">Extract Text from PDF</a>
-                    <h4> | </h4>
-                    <a href="/contact">Contact Us</a>
-                </div>
-        </header>
             <h1>Recommendations for "{query}"</h1>
             <ul>
-                {recommendations_html}
+                {recommendations_html if recommendations_html else "<li>No recommendations found.</li>"}
             </ul>
             <a href="/recommend">Get More Recommendations</a>
         </body>
-        <footer><a href="/contact?module=Recommendations" class="feedback-button">Give Feedback</a></footer>
         </html>
         '''
 
@@ -1136,6 +1217,16 @@ def extract_text_route():
     <body>
         <header>
             <h1>Extract Text from PDF</h1>
+        </header>
+        <header style="display: flex; justify-content: space-between; align-items: center; background-color: #0078D7; color: white;">
+                <div style="display: flex; justify-content: space-between; align-items: left;">
+                    <a href="/">Home</a>
+                    <a href="/ask">Ask a Question</a>
+                    <a href="/recommend">Get Recommendations</a>
+                    <a href="/extract_text">Extract Text from PDF</a>
+                    <h4> | </h4>
+                    <a href="/contact">Contact Us</a>
+                </div>
         </header>
         <main>
             <h1>Upload PDF</h1>
