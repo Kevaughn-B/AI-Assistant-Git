@@ -1,0 +1,448 @@
+qa_model.py {
+    #QA_Model Takes User Input And Provides Answers
+from transformers import pipeline
+import torch
+
+class QASystem:
+    def __init__(self):
+        # Check if GPU is available
+        self.device = 0 if torch.cuda.is_available() else -1
+        self.qa_pipeline = pipeline("question-answering", 
+                                    model="distilbert-base-cased-distilled-squad", 
+                                    device=self.device)
+
+    def answer_question(self, question, context):
+        # Ensure that question and context are provided
+        if not question or not context:
+            raise ValueError("Both question and context must be provided.")
+        
+        response = self.qa_pipeline({
+            'question': question,
+            'context': context
+        })
+        
+        return response['answer']
+
+# Example usage:
+if __name__ == "__main__":
+    qa_system = QASystem()
+    
+    context = "Python is a high-level programming language known for its simplicity and versatility."
+    question = "What type of language is Python?"
+    
+    # Get and print the answer
+    try:
+        answer = qa_system.answer_question(question, context)
+        print("Answer:", answer)
+    except Exception as e:
+        print(f"Error: {e}")
+}
+
+{
+    elif request.method == 'POST':
+        question = request.form.get('question')
+        context = request.form.get('context', '')  # Allow context to be empty
+
+        if not question:
+            return jsonify({"error": "Missing question"}), 400
+
+        try:
+            answer = qa_system.answer_question(question, context)
+            return f'''
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Answer</title>
+            </head>
+            <body>
+                <h1>Answer</h1>
+                <p>Question: {question}</p>
+                <p>Answer: {answer}</p>
+                <a href="/ask">Ask Another Question</a>
+            </body>
+            </html>
+            '''
+        except Exception as e:
+            return jsonify({"error": f"Error in answering question: {e}"}), 500
+
+}
+
+{
+    @app.route('/answer', methods=['GET', 'POST'])
+def answer():
+    if request.method == 'GET':
+        return '''
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Get an Answer</title>
+            <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+                color: #333;
+                text-align: center;
+                scroll-behavior: smooth;
+            }
+            header {
+                background-color: #0078D7;
+                color: white;
+                padding: 1rem;
+            }
+            header h1 {
+                margin: 0;
+            }
+            main {
+                margin: 2rem;
+            }
+            section {
+            padding: 100px;
+            margin: 50px 0;
+            border: 1px solid #ccc;
+        }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 1rem;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            a {
+                display: inline-block;
+                margin: 1rem 0;
+                padding: 0.75rem 1.5rem;
+                background-color: #0078D7;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+            a:hover {
+                background-color: #005BB5;
+            }
+            footer {
+                margin-top: 2rem;
+                font-size: 0.9rem;
+                color: #666;
+            }
+        </style>
+        </head>
+        <body>
+            <header>
+                <h1>Get an Answer</h1>
+            </header>
+            <header style="display: flex; justify-content: space-between; align-items: center; background-color: #0078D7; color: white;">
+                <div style="display: flex; justify-content: space-between; align-items: left;">
+                    <a href="/">Home</a>
+                    <a href="/ask">Ask a Question</a>
+                    <a href="/recommend">Get Recommendations</a>
+                    <a href="/extract_text">Extract Text from PDF</a>
+                    <h4> | </h4>
+                    <a href="/contact">Contact Us</a>
+                </div>
+                <a href="/login" style="color: white; text-decoration: none; background-color: #005BB5; padding: 0.5rem 1rem; border-radius: 5px;">Login</a>
+        </header>
+            <main>
+                <div class="container">
+                    <form method="POST" action="/answer">
+                        <label for="question">Question:</label><br>
+                        <input type="text" id="question" name="question" placeholder="Enter your question" required><br><br>
+                        <label for="context">Context (optional):</label><br>
+                        <textarea id="context" name="context" placeholder="Enter context here..."></textarea><br><br>
+                        <button type="submit">Get Answer</button>
+                    </form>
+                </div>
+            </main>
+        </body>
+        </html>
+        '''
+    elif request.method == 'POST':
+        try:
+            question = request.form.get('question')
+            context = request.form.get('context', '')  # Allow context to be empty
+
+            if not question:
+                return '''
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Error</title>
+                </head>
+                <body>
+                    <h1>Error</h1>
+                    <p>You must provide a question. <a href="/answer">Try Again</a></p>
+                </body>
+                </html>
+                '''
+
+            # Get the answer from the QA system
+            answer = qa_system.answer_question(question, context)
+
+            return f'''
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Answer</title>
+            </head>
+            <body>
+                <h1>Your Answer</h1>
+                <p><strong>Question:</strong> {question}</p>
+                <p><strong>Answer:</strong> {answer}</p>
+                <a href="/answer">Ask Another Question</a>
+            </body>
+            </html>
+            '''
+        except Exception as e:
+            return f'''
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Error</title>
+            </head>
+            <body>
+                <h1>Error</h1>
+                <p>Something went wrong: {e}. <a href="/answer">Try Again</a></p>
+            </body>
+            </html>
+            '''
+
+}
+
+{
+    @app.route('/extract_text', methods=['GET', 'POST'])
+def extract_text():
+    if request.method == 'GET':
+        return '''
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Extract Text from PDF</title>
+            <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+                color: #333;
+                text-align: center;
+                scroll-behavior: smooth;
+            }
+            header {
+                background-color: #0078D7;
+                color: white;
+                padding: 1rem;
+            }
+            header h1 {
+                margin: 0;
+            }
+            main {
+                margin: 2rem;
+            }
+            section {
+            padding: 100px;
+            margin: 50px 0;
+            border: 1px solid #ccc;
+        }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 1rem;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            a {
+                display: inline-block;
+                margin: 1rem 0;
+                padding: 0.75rem 1.5rem;
+                background-color: #0078D7;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+            a:hover {
+                background-color: #005BB5;
+            }
+            footer {
+                margin-top: 2rem;
+                font-size: 0.9rem;
+                color: #666;
+            }
+        </style>
+        </head>
+        <body>
+            <header>
+                <h1>Extract Text from PDF</h1>
+            </header>
+            <header style="display: flex; justify-content: space-between; align-items: center; background-color: #0078D7; color: white;">
+                <div style="display: flex; justify-content: space-between; align-items: left;">
+                    <a href="/">Home</a>
+                    <a href="/ask">Ask a Question</a>
+                    <a href="/recommend">Get Recommendations</a>
+                    <a href="/extract_text">Extract Text from PDF</a>
+                    <h4> | </h4>
+                    <a href="/contact">Contact Us</a>
+                </div>
+                <a href="/login" style="color: white; text-decoration: none; background-color: #005BB5; padding: 0.5rem 1rem; border-radius: 5px;">Login</a>
+        </header>
+            <main>
+                <div class="container">
+                    <form method="POST" action="/extract_text" enctype="multipart/form-data">
+                        <label for="pdf">Choose a PDF file:</label><br>
+                        <input type="file" id="pdf" name="pdf" accept=".pdf" required><br><br>
+                        <button type="submit">Extract Text</button>
+                    </form>
+                </div>
+            </main>
+        </body>
+        </html>
+        '''
+    elif request.method == 'POST':
+        if 'pdf' not in request.files:
+            return jsonify({"error": "No file part"}), 400
+        
+        pdf_file = request.files['pdf']
+        file_path = "/tmp/" + pdf_file.filename
+        pdf_file.save(file_path)
+        text = text_processor.extract_text_from_pdf(file_path)
+        
+        return f'''
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Extracted Text</title>
+        </head>
+        <body>
+            <h1>Extracted Text</h1>
+            <p>{text}</p>
+            <a href="/extract_text">Extract Another PDF</a>
+        </body>
+        </html>
+        '''
+
+}
+
+{
+    @app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    module = request.args.get('module', '')
+    
+    if request.method == 'GET':
+        return '''
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Contact Us</title>
+            <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+                color: #333;
+                text-align: center;
+                scroll-behavior: smooth;
+            }
+            header {
+                background-color: #0078D7;
+                color: white;
+                padding: 1rem;
+            }
+            header h1 {
+                margin: 0;
+            }
+            main {
+                margin: 2rem;
+            }
+            section {
+            padding: 100px;
+            margin: 50px 0;
+            border: 1px solid #ccc;
+        }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 1rem;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            a {
+                display: inline-block;
+                margin: 1rem 0;
+                padding: 0.75rem 1.5rem;
+                background-color: #0078D7;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+            a:hover {
+                background-color: #005BB5;
+            }
+            footer {
+                margin-top: 2rem;
+                font-size: 0.9rem;
+                color: #666;
+            }
+        </style>
+        </head>
+        <body>
+            <header>
+                <h1>Contact Us</h1>
+            </header>
+            <header style="display: flex; justify-content: space-between; align-items: center; background-color: #0078D7; color: white;">
+                <div style="display: flex; justify-content: space-between; align-items: left;">
+                    <a href="/">Home</a>
+                    <a href="/ask">Ask a Question</a>
+                    <a href="/recommend">Get Recommendations</a>
+                    <a href="/extract_text">Extract Text from PDF</a>
+                    <h4> | </h4>
+                    <a href="/contact">Contact Us</a>
+                </div>
+                <a href="/login" style="color: white; text-decoration: none; background-color: #005BB5; padding: 0.5rem 1rem; border-radius: 5px;">Login</a>
+        </header>
+            <main>
+                <div class="container">
+                    <form method="POST" action="/contact">
+                        <label for="name">Name:</label><br>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required><br><br>
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required><br><br>
+                        <label for="message">Message:</label><br>
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea><br><br>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </main>
+        </body>
+        </html>
+        '''
+    elif request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+
+        conn = sqlite3.connect('users.db')
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)", (name, email, message))
+        conn.commit()
+        conn.close()
+
+        return '''
+        <h1>Thank You!</h1>
+        <p>Your message has been received. We will get back to you soon.</p>
+        <a href="/">Return to Home</a>
+        '''
+
+}

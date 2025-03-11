@@ -1,0 +1,172 @@
+@app.route('/', methods=['GET'])
+def home():
+    return '''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AI Academic Assistant</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+                color: #333;
+                text-align: center;
+                scroll-behavior: smooth;
+            }
+            header {
+                background-color: #0078D7;
+                color: white;
+                padding: 1rem;
+            }
+            header h1 {
+                margin: 0;
+            }
+            main {
+                margin: 2rem;
+            }
+            section {
+            padding: 100px;
+            margin: 50px 0;
+            border: 1px solid #ccc;
+        }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 1rem;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            a {
+                display: inline-block;
+                margin: 1rem 0;
+                padding: 0.75rem 1.5rem;
+                background-color: #0078D7;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+            a:hover {
+                background-color: #005BB5;
+            }
+            footer {
+                margin-top: 2rem;
+                font-size: 0.9rem;
+                color: #666;
+            }
+        </style>
+    </head>
+        <header>
+            <h1>Welcome to the AI Academic Assistant</h1>
+        </header>
+    <body>
+        <header style="display: flex; justify-content: space-between; align-items: center; background-color: #0078D7; color: white;">
+                <div style="display: flex; justify-content: space-between; align-items: left;">
+                    <a href="/">Home</a>
+                    <a href="#section1">Ask a Question</a>
+                    <a href="#section2">Get Recommendations</a>
+                    <a href="#section3">Extract Text from PDF</a>
+                    <h4> | </h4>
+                    <a href="/contact">Contact Us</a>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <a href="/dashboard" style="color: white; text-decoration: none; background-color: #005BB5; padding: 0.5rem 1rem; border-radius: 5px;">Dashboard</a>
+                    <h4 style="margin: 0 15px;">|</h4>
+        
+                    {% if username %}
+                        <span style="color: white; font-weight: bold; padding-right: 10px;">Welcome, {{ username }}</span>
+                        <a href="/logout" style="color: white; text-decoration: none; background-color: #FF4C4C; padding: 0.5rem 1rem; border-radius: 5px;">Logout</a>
+                    {% else %}
+                        <a href="/login" style="color: white; text-decoration: none; background-color: #005BB5; padding: 0.5rem 1rem; border-radius: 5px;">Login</a>
+                    {% endif %}
+                </div>
+            </header>
+        <main>
+            <section style="padding: 2rem; background-color: white;">
+                <h2 style="text-align: center; margin-bottom: 1.5rem;">What Our Users Say</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
+                    <div style="background: #f4f4f9; padding: 1rem; border-radius: 8px;">
+                        <p>"This tool has revolutionized the way I study. The question-answering feature is amazing!"</p>
+                        <p><strong>- Student A</strong></p>
+                    </div>
+                    <div style="background: #f4f4f9; padding: 1rem; border-radius: 8px;">
+                        <p>"Extracting text from PDFs has never been easier. Highly recommended for researchers!"</p>
+                        <p><strong>- Researcher B</strong></p>
+                    </div>
+                    <div style="background: #f4f4f9; padding: 1rem; border-radius: 8px;">
+                        <p>"The recommendations I get are spot-on and super helpful for my assignments."</p>
+                        <p><strong>- Student C</strong></p>
+                    </div>
+                </div>
+            </section>
+            <section style="padding: 2rem; background-color: #0078D7; color: white; text-align: center;">
+                <h1>Welcome to the AI Academic Assistant</h1>
+                <p>Your one-stop solution for academic excellence! Ask questions, extract text, and get recommendations in seconds.</p>
+                <a href="/ask" style="color: white; text-decoration: none; background-color: #005BB5; padding: 0.75rem 1.5rem; border-radius: 5px;">Get Started</a>
+            </section>
+            <section style="padding: 2rem; background-color: #f4f4f9;">
+                <h2 style="text-align: center; margin-bottom: 1.5rem;">Our Features</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
+                    <div style="background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                        <h3>Search For Responses</h3>
+                        <p>Get precise answers to your academic questions that other users have searched.</p>
+                        <a href="/search">Search</a>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                        <h3>PDF Text Extraction</h3>
+                        <p>Upload your PDF files and extract text instantly for easy referencing.</p>
+                        <a href="/manage_pdfs">Manage Uploaded PDFs</a>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                        <h3>Get Recommendations</h3>
+                        <p>Receive personalized academic recommendations based on your queries.</p>
+                        <a href="#section3" style="color: #0078D7; text-decoration: none;">Learn More &rarr;</a>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                        <h3>Contact Us</h3>
+                        <p>Have questions or feedback? Get in touch with our team for assistance.</p>
+                        <a href="/contact" style="color: #0078D7; text-decoration: none;">Contact Us &rarr;</a>
+                    </div>
+                </div>
+            </section>
+            <section style="padding: 2rem; background-color: #0078D7; color: white; text-align: center;">
+                <h2>Ready to Elevate Your Academic Journey?</h2>
+                <p>Join the hundreds of students and researchers already using AI Academic Assistant.</p>
+                <a href="/login" style="color: white; text-decoration: none; background-color: #005BB5; padding: 0.75rem 1.5rem; border-radius: 5px;">Get Started Now</a>
+            </section>
+            <section id="section1">
+                <h2>Section 1</h2>
+                <p>Question Answering</p>
+                <div class="container">
+                <p>Curious about something? Our AI-powered question-answering system is here to help. Enter your question along with optional context, and let the AI provide you with accurate, concise answers in seconds.</p>
+                <a href="/ask">Ask a Question</a><br>
+            </div>
+            </section>
+            <section id="section2">
+                <h2>Section 2</h2>
+                <p>Recommendation.</p>
+                <div class="container">
+                <p>Need resources tailored to your academic needs? Enter your query, and our system will recommend books, articles, and other materials to help you succeed.</p>
+                <a href="/recommend">Get Recommendations</a><br>
+            </div>
+            </section>
+            <section id="section3">
+                <h2>Section 3</h2>
+                <p>PDF Extractor.</p>
+                <div class="container">
+                <p>Dealing with lengthy PDFs? Upload your files, and our system will extract the text for you, making it easier to search, highlight, and reference important information.</p>
+                <a href="/extract_text">Extract Text from PDF</a>
+            </div>
+            </section>
+        </main>
+        <footer>
+            &copy; 2024 AI Academic Assistant ~ Kevaughn Benjamin. All rights reserved.
+    </footer>
+    </body>
+    </html>
+    '''

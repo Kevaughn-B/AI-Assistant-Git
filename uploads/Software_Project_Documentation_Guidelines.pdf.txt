@@ -1,0 +1,41 @@
+CPTR490: INFORMATION SCIENCE ADVANCED PROJECT 
+
+Final Documentation Guidelines 
+
+Project Documentation Guidelines 
+General Information 
+▪  1.5 spacing 
+▪  Use normal margins (1” on all sides) 
+▪  Font size 12 (Using Calibri, Times New Roman, Garamond or similar fonts) 
+
+▪  This document should be professionally bound (absolutely no paper/plastic folders). 
+▪  The completed project package must include the following items: 
+
+*
+
+1.  Project Proposal with Executive Summary 
+2.  Technical/System Document 
+3.  User Manual – This is a separate document from your System Documentation (bullets 1 & 2) 
+4.  Clean Source Code (including test cases for major methods/functions) 
+5.  Software/Application (executable/packaged/functional etc.) 
+
+USER’S MANUAL GUIDELINES 
+A complete users’ guide should be written for the intended audience (separate document).  User’s manual 
+should contain: 
+
+▪  Table of contents 
+▪  Username and password if required to gain access to or operate the software. 
+▪  How to install and setup the software. 
+▪  Screen shots and steps to perform all functions. 
+
+*
+
+ To be decided 
+
+ 
+ 
+ 
+ 
+ 
+ 
+

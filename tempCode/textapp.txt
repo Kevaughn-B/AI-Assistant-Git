@@ -6,7 +6,6 @@ from media_processing.text_processor import TextProcessor
 import sqlite3
 import bcrypt
 import logging
-import requests
 from werkzeug.utils import secure_filename
 from flask import Flask, request, redirect, jsonify, url_for, render_template, send_file, session
 from pdfminer.high_level import extract_text
@@ -25,19 +24,6 @@ text_processor = TextProcessor()
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 
-#def add_link_column():
-    #conn = sqlite3.connect('users.db')
-    #cursor = conn.cursor()
-    #try:
-    #    cursor.execute("ALTER TABLE recommendations ADD COLUMN link TEXT")
-    #    conn.commit()
-    #    print("✅ Added 'link' column to recommendations table.")
-    #except sqlite3.OperationalError as e:
-    #    print("Column may already exist or error occurred:", e)
-    #conn.close()
-
-#add_link_column()
-
 def init_db():
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
@@ -48,16 +34,6 @@ def init_db():
             username TEXT UNIQUE NOT NULL,        
             email TEXT UNIQUE NOT NULL,           
             password TEXT NOT NULL                
-        )
-    ''')
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS user_queries (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,  
-            username TEXT NOT NULL,        
-            query TEXT NOT NULL,           
-            answer TEXT NOT NULL ,
-            submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP              
         )
     ''')
 
@@ -84,28 +60,9 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS pdf_uploads (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
             filename TEXT NOT NULL,
             extracted_text TEXT NOT NULL,
             uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS recommendations (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            query TEXT NOT NULL,
-            recommendation TEXT NOT NULL,
-            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS user_sessions (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            login_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
 
@@ -393,16 +350,12 @@ def login():
         cursor = conn.cursor()
         cursor.execute('SELECT password FROM users WHERE username = ?', (username,))
         result = cursor.fetchone()
+        conn.close()
 
         if result and verify_password(password, result[0]):
             session['username'] = username
             session['logged_in'] = True
             session.permanent = True
-
-            cursor.execute("INSERT INTO user_sessions (username) VALUES (?)", (username,))
-            conn.commit()
-            conn.close()
-
             return redirect(url_for('dashboard'))
         else:
             return "<h1>Invalid credentials. Try again.</h1>"
@@ -527,119 +480,6 @@ def logout():
     session.pop('logged_in', None)
     return redirect(url_for('home'))
 
-@app.route('/search', methods=['GET', 'POST'])
-def search():
-    if request.method == 'GET':
-        return '''
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Unified Search</title>
-            <style>
-                body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f4f4f9; }
-                .container { max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
-                input[type="text"] { width: 80%; padding: 10px; margin: 10px 0; }
-                button { padding: 10px 20px; background-color: #0078D7; color: white; border: none; border-radius: 5px; }
-                button:hover { background-color: #005BB5; }
-            </style>
-        </head>
-        <body>
-            <h1>Search All User Data</h1>
-            <div class="container">
-                <form method="POST">
-                    <input type="text" name="search_term" placeholder="Enter search term" required>
-                    <button type="submit">Search</button>
-                </form>
-            </div>
-        </body>
-        </html>
-        '''
-    else:
-        search_term = request.form.get('search_term')
-        if not search_term:
-            return "<h1>Error: No search term provided.</h1><a href='/search'>Try Again</a>"
-
-        conn = sqlite3.connect('users.db')
-        cursor = conn.cursor()
-
-        cursor.execute("SELECT username, query, answer, submitted_at FROM user_queries WHERE query LIKE ? OR answer LIKE ?",
-                    (f"%{search_term}%", f"%{search_term}%"))
-        query_results = cursor.fetchall()
-
-        cursor.execute("SELECT username, query, recommendation, timestamp FROM recommendations WHERE query LIKE ? OR recommendation LIKE ?",
-                    (f"%{search_term}%", f"%{search_term}%"))
-        rec_results = cursor.fetchall()
-
-        cursor.execute("SELECT username, filename, uploaded_at FROM pdf_uploads WHERE filename LIKE ? OR extracted_text LIKE ?",
-                    (f"%{search_term}%", f"%{search_term}%"))
-        pdf_results = cursor.fetchall()
-
-        conn.close()
-
-        query_html = "".join(f"<tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td><td>{r[3]}</td></tr>" for r in query_results)
-        rec_html = "".join(f"<tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td><td>{r[3]}</td></tr>" for r in rec_results)
-        pdf_html = "".join(f"<tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>" for r in pdf_results)
-
-        return f'''
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Search Results</title>
-            <style>
-                body {{ font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; text-align: center; }}
-                table {{
-                    width: 80%;
-                    margin: 20px auto;
-                    border-collapse: collapse;
-                    background: white;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                }}
-                th, td {{ border: 1px solid #ccc; padding: 10px; text-align: left; }}
-                th {{ background-color: #0078D7; color: white; }}
-                a {{
-                    display: inline-block;
-                    margin: 20px;
-                    padding: 10px 20px;
-                    background-color: #0078D7;
-                    color: white;
-                    text-decoration: none;
-                    border-radius: 5px;
-                }}
-                a:hover {{ background-color: #005BB5; }}
-            </style>
-        </head>
-        <body>
-            <h1>Search Results for "{search_term}"</h1>
-            
-            <h2>Past Questions & Answers</h2>
-            <table>
-                <tr><th>Username</th><th>Query</th><th>Answer</th><th>Submitted At</th></tr>
-                {query_html if query_html else "<tr><td colspan='4'>No results found.</td></tr>"}
-            </table>
-            
-            <h2>Recommendations</h2>
-            <table>
-                <tr><th>Username</th><th>Query</th><th>Recommendation</th><th>Time</th></tr>
-                {rec_html if rec_html else "<tr><td colspan='4'>No recommendations found.</td></tr>"}
-            </table>
-            
-            <h2>Uploaded PDFs</h2>
-            <table>
-                <tr><th>Username</th><th>Filename</th><th>Uploaded At</th></tr>
-                {pdf_html if pdf_html else "<tr><td colspan='3'>No PDFs found.</td></tr>"}
-            </table>
-            
-            <br><a href="/search">New Search</a>
-            <a href="/">Back to Home</a>
-        </body>
-        </html>
-        '''
-
 @app.route('/ask', methods=['GET', 'POST'])
 def ask():
     if request.method == 'GET':
@@ -735,40 +575,23 @@ def ask():
         </html>
         '''
     else:
-        if 'username' not in session:
-            return "<h1>Please log in to ask a question.</h1><a href='/login'>Login</a>"
-
-        username = session['username']
         question = request.form['question']
         context = request.form.get('context', '')
 
         result = qa_system.answer_question(question, context)
-        answer = result["answer"]
-
-        conn = sqlite3.connect('users.db')
-        cursor = conn.cursor()
-        cursor.execute(
-            "INSERT INTO user_queries (username, query, answer) VALUES (?, ?, ?)",
-            (username, question, answer)
-        )
-        conn.commit()
-        conn.close()
 
         return f'''
         <h1>Answer:</h1>
-        <p><strong>{answer}</strong></p>
+        <p><strong>{result["answer"]}</strong></p>
         <p><small>Confidence: {round(result["confidence"] * 100, 2)}%</small></p>
         <h3>Context:</h3>
-        <p>{result["context"].replace(answer, f'<span class="highlight">{answer}</span>')}</p>
+        <p>{result["context"].replace(result["answer"], f'<span class="highlight">{result["answer"]}</span>')}</p>
         <a href="/ask">Ask Another Question</a>
         '''
 
 @app.route('/answer', methods=['POST'])
 def answer():
     try:
-        if 'username' not in session:
-            return jsonify({"error": "Please log in to ask questions"}), 401
-
         data = request.get_json()
         question = data.get('question', '').strip()
         context = data.get('context', '').strip()
@@ -777,19 +600,9 @@ def answer():
             return jsonify({"error": "Missing question"}), 400
 
         result = qa_system.answer_question(question, context)
-        answer = result["answer"]
-
-        conn = sqlite3.connect('users.db')
-        cursor = conn.cursor()
-        cursor.execute(
-            "INSERT INTO user_queries (username, query, answer) VALUES (?, ?, ?)",
-            (session['username'], question, answer)
-        )
-        conn.commit()
-        conn.close()
 
         return jsonify({
-            "answer": answer,
+            "answer": result["answer"],
             "confidence": result["confidence"],
             "context": result["context"]
         })
@@ -797,50 +610,8 @@ def answer():
     except Exception as e:
         return jsonify({"error": f"Internal Server Error: {e}"}), 500
 
-def search_duckduckgo(query):
-    url = "https://api.duckduckgo.com/"
-    params = {
-        "q": query,
-        "format": "json",
-        "pretty": 1
-    }
-    response = requests.get(url, params=params)
-    data = response.json()
-    results = []
-    for topic in data.get("RelatedTopics", []):
-        if isinstance(topic, dict) and "Text" in topic and "FirstURL" in topic:
-            results.append({
-                "title": topic["Text"],
-                "link": topic["FirstURL"],
-                "type": "Web Search"
-            })
-        elif isinstance(topic, dict) and "Topics" in topic:
-            for subtopic in topic["Topics"]:
-                if "Text" in subtopic and "FirstURL" in subtopic:
-                    results.append({
-                        "title": subtopic["Text"],
-                        "link": subtopic["FirstURL"],
-                        "type": "Web Search"
-                    })
-    return results
-
-def get_local_recommendations(query):
-    conn = sqlite3.connect('users.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT query, recommendation, link FROM recommendations WHERE query LIKE ?", (f"%{query}%",))
-    results = cursor.fetchall()
-    conn.close()
-    recs = []
-    for q, title, link in results:
-        recs.append({
-            "title": title,
-            "link": link,
-            "type": "Local Recommendation"
-        })
-    return recs
-
 @app.route('/recommend', methods=['GET', 'POST'])
-def recommend_route():
+def recommend():
     if request.method == 'GET':
         return '''
         <!DOCTYPE html>
@@ -902,11 +673,10 @@ def recommend_route():
                 color: #666;
             }
         </style>
-        
         </head>
         <body>
-        <header>
-            <h1>Academic Recommendations</h1>
+            <header>
+                <h1>Get Recommendations</h1>
             </header>
             <header style="display: flex; justify-content: space-between; align-items: center; background-color: #0078D7; color: white;">
                 <div style="display: flex; justify-content: space-between; align-items: left;">
@@ -918,148 +688,58 @@ def recommend_route():
                     <a href="/contact">Contact Us</a>
                 </div>
         </header>
-            <div class="container">
-                <form method="POST">
-                    <label for="query">Enter a Query:</label><br>
-                    <input type="text" id="query" name="query" placeholder="e.g., machine learning books" required><br><br>
-                    <button type="submit">Get Recommendations</button>
-                </form>
-            </div>
+            <main>
+                <div class="container">
+                    <form method="POST" action="/recommend">
+                        <label for="query">Enter a Query:</label><br>
+                        <input type="text" id="query" name="query" placeholder="e.g., machine learning books" required><br><br>
+                        <button type="submit">Get Recommendations</button>
+                    </form>
+                </div>
+            </main>
         </body>
+        <footer><a href="/contact?module=Recommendations" class="feedback-button">Give Feedback</a></footer>
         </html>
         '''
     elif request.method == 'POST':
-        if 'username' not in session:
-            return "<h1>Please log in to get recommendations.</h1><a href='/login'>Login</a>"
-        
-        username = session['username']
         query = request.form.get('query')
 
         if not query:
             return '''
             <!DOCTYPE html>
             <html>
-            <head><title>Error</title></head>
+            <head>
+                <title>Error</title>
+            </head>
             <body>
                 <h1>Error</h1>
                 <p>You must provide a query. <a href="/recommend">Try Again</a></p>
             </body>
             </html>
             '''
-        
-        conn = sqlite3.connect('users.db')
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO user_queries (username, query, answer) VALUES (?, ?, ?)", (username, query, "N/A"))
-        conn.commit()
 
-        local_results = get_local_recommendations(query)
+        recommendations = recommender.get_recommendations(query)
 
-        web_results = search_duckduckgo(query)
-
-        combined_results = local_results + web_results
-
-        if combined_results:
-            recommendation_text = combined_results[0]["title"]
-            cursor.execute("INSERT INTO recommendations (username, query, recommendation) VALUES (?, ?, ?)", 
-                (username, query, recommendation_text))
-            conn.commit()
-        conn.close()
-
-        recommendations_html = ''.join(f'<li><b>{rec["type"]}:</b> <a href="{rec["link"]}" target="_blank">{rec["title"]}</a></li>' for rec in combined_results)
+        recommendations_html = ''.join(f'<li>{rec}</li>' for rec in recommendations)
 
         return f'''
         <!DOCTYPE html>
-        <html lang="en">
+        <html>
         <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Recommendations</title>
-            <style>
-            body {{
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f4f4f9;
-                color: #333;
-                text-align: center;
-                scroll-behavior: smooth;
-            }}
-            header {{
-                background-color: #0078D7;
-                color: white;
-                padding: 1rem;
-            }}
-            header h1 {{
-                margin: 0;
-            }}
-            main {{
-                margin: 2rem;
-            }}
-            section {{
-            padding: 100px;
-            margin: 50px 0;
-            border: 1px solid #ccc;
-        }}
-            .container {{
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 1rem;
-                background: white;
-                border-radius: 8px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }}
-            a {{
-                display: inline-block;
-                margin: 1rem 0;
-                padding: 0.75rem 1.5rem;
-                background-color: #0078D7;
-                color: white;
-                text-decoration: none;
-                border-radius: 5px;
-                transition: background-color 0.3s ease;
-            }}
-            a:hover {{
-                background-color: #005BB5;
-            }}
-            footer {{
-                margin-top: 2rem;
-                font-size: 0.9rem;
-                color: #666;
-            }}
-        </style>
-        
         </head>
         <body>
-        <header>
-            <h1>Academic Recommendations</h1>
-            </header>
-            <header style="display: flex; justify-content: space-between; align-items: center; background-color: #0078D7; color: white;">
-                <div style="display: flex; justify-content: space-between; align-items: left;">
-                    <a href="/">Home</a>
-                    <a href="/ask">Ask a Question</a>
-                    <a href="/recommend">Get Recommendations</a>
-                    <a href="/extract_text">Extract Text from PDF</a>
-                    <h4> | </h4>
-                    <a href="/contact">Contact Us</a>
-                </div>
-        </header>
             <h1>Recommendations for "{query}"</h1>
             <ul>
                 {recommendations_html}
             </ul>
             <a href="/recommend">Get More Recommendations</a>
         </body>
-        <footer><a href="/contact?module=Recommendations" class="feedback-button">Give Feedback</a></footer>
         </html>
         '''
 
 @app.route('/extract_text', methods=['GET', 'POST'])
 def extract_text_route():
-    if 'username' not in session:
-        return "<h1>Please log in first.</h1><a href='/login'>Login</a>"
-
-    username = session['username']
-
     if request.method == 'POST':
         pdf_file = request.files['pdf']
         if pdf_file and pdf_file.filename.endswith('.pdf'):
@@ -1072,8 +752,7 @@ def extract_text_route():
 
             conn = sqlite3.connect('users.db')
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO pdf_uploads (username, filename, extracted_text) VALUES (?, ?, ?)", 
-                        (username, filename, extracted_text))
+            cursor.execute("INSERT INTO pdf_uploads (filename, extracted_text) VALUES (?, ?)", (filename, extracted_text))
             conn.commit()
             conn.close()
 
@@ -1081,12 +760,12 @@ def extract_text_route():
     
     return '''
     <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Extract Text from PDF</title>
-        <style>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Ask a Question</title>
+            <style>
             body {
                 font-family: Arial, sans-serif;
                 margin: 0;
@@ -1094,6 +773,7 @@ def extract_text_route():
                 background-color: #f4f4f9;
                 color: #333;
                 text-align: center;
+                scroll-behavior: smooth;
             }
             header {
                 background-color: #0078D7;
@@ -1106,6 +786,11 @@ def extract_text_route():
             main {
                 margin: 2rem;
             }
+            section {
+            padding: 100px;
+            margin: 50px 0;
+            border: 1px solid #ccc;
+        }
             .container {
                 max-width: 600px;
                 margin: 0 auto;
@@ -1122,6 +807,7 @@ def extract_text_route():
                 color: white;
                 text-decoration: none;
                 border-radius: 5px;
+                transition: background-color 0.3s ease;
             }
             a:hover {
                 background-color: #005BB5;
@@ -1132,10 +818,21 @@ def extract_text_route():
                 color: #666;
             }
         </style>
-    </head>
-    <body>
-        <header>
-            <h1>Extract Text from PDF</h1>
+        
+        </head>
+        <body>
+            <header>
+                <h1>Ask a Question</h1>
+            </header>
+            <header style="display: flex; justify-content: space-between; align-items: center; background-color: #0078D7; color: white;">
+                <div style="display: flex; justify-content: space-between; align-items: left;">
+                    <a href="/">Home</a>
+                    <a href="/ask">Ask a Question</a>
+                    <a href="/recommend">Get Recommendations</a>
+                    <a href="/extract_text">Extract Text from PDF</a>
+                    <h4> | </h4>
+                    <a href="/contact">Contact Us</a>
+                </div>
         </header>
         <main>
             <h1>Upload PDF</h1>
@@ -1322,190 +1019,119 @@ def delete_pdf(file_id):
 
 @app.route('/dashboard')
 def dashboard():
-    if 'username' not in session:
-        return "<h1>Please log in first.</h1><a href='/login'>Login</a>"
-
-    username = session['username']
+    if 'username' not in session or session['username'] != 'admin':
+        return "<h1>Unauthorized Access</h1><a href='/'>Go to Home</a>"
+    
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
 
-    if username == 'admin':
-        cursor.execute("SELECT name, email, message, submitted_at FROM contact_messages ORDER BY submitted_at DESC")
-        messages = cursor.fetchall()
+    cursor.execute("SELECT name, email, message, submitted_at FROM contact_messages ORDER BY submitted_at DESC")
+    messages = cursor.fetchall()
+    conn.close()
 
-        cursor.execute("SELECT name, feature, feedback, submitted_at FROM feedback ORDER BY submitted_at DESC")
-        feedback = cursor.fetchall()
+    message_list = "".join([f"""
+        <tr>
+            <td>{m[0]}</td>
+            <td>{m[1]}</td>
+            <td>{m[2]}</td>
+            <td>{m[3]}</td>
+        </tr>""" for m in messages])
+    
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
 
-        cursor.execute("SELECT COUNT(*) FROM user_sessions")
-        total_logins = cursor.fetchone()[0]
+    cursor.execute("SELECT name, feature, feedback, submitted_at FROM feedback ORDER BY submitted_at DESC")
+    messages = cursor.fetchall()
+    conn.close()
 
-        cursor.execute("SELECT COUNT(*) FROM pdf_uploads")
-        total_pdfs = cursor.fetchone()[0]
+    feedback_list = "".join([f"""
+        <tr>
+            <td>{m[0]}</td>
+            <td>{m[1]}</td>
+            <td>{m[2]}</td>
+            <td>{m[3]}</td>
+        </tr>""" for m in messages])
 
-        cursor.execute("SELECT COUNT(*) FROM recommendations")
-        total_recommendations = cursor.fetchone()[0]
-
-        cursor.execute("SELECT COUNT(*) FROM user_queries")
-        total_queries = cursor.fetchone()[0]
-
-        cursor.execute("""
-            SELECT users.username, 
-                COUNT(DISTINCT user_queries.id) AS total_queries, 
-                COUNT(DISTINCT recommendations.id) AS total_recommendations,
-                COUNT(DISTINCT pdf_uploads.id) AS total_pdfs
-            FROM users
-            LEFT JOIN user_queries ON users.username = user_queries.username
-            LEFT JOIN recommendations ON users.username = recommendations.username
-            LEFT JOIN pdf_uploads ON users.username = pdf_uploads.username  -- FIXED THIS LINE
-            GROUP BY users.username
-            ORDER BY total_queries DESC, total_recommendations DESC, total_pdfs DESC
-            LIMIT 5
-        """)
-        active_users = cursor.fetchall()
-        conn.close()
-
-        message_list = "".join(f"<tr><td>{m[0]}</td><td>{m[1]}</td><td>{m[2]}</td><td>{m[3]}</td></tr>" for m in messages)
-        feedback_list = "".join(f"<tr><td>{f[0]}</td><td>{f[1]}</td><td>{f[2]}</td><td>{f[3]}</td></tr>" for f in feedback)
-        active_user_list = "".join(f"<tr><td>{u[0]}</td><td>{u[1]} queries</td><td>{u[2]} recommendations</td><td>{u[3]} PDFs</td></tr>" for u in active_users)
-
-        return f'''
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Admin Dashboard</title>
-            <style>
-                body {{
-                    font-family: Arial, sans-serif;
-                    margin: 0;
-                    padding: 0;
-                    background-color: #f4f4f9;
-                    color: #333;
-                    text-align: center;
-                }}
-                h1 {{ margin: 20px 0; }}
-                table {{
-                    width: 80%;
-                    margin: 20px auto;
-                    border-collapse: collapse;
-                    background: white;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                }}
-                th, td {{
-                    border: 1px solid #ccc;
-                    padding: 10px;
-                    text-align: left;
-                }}
-                th {{ background-color: #0078D7; color: white; }}
-                a {{
-                    display: inline-block;
-                    margin: 20px 0;
-                    padding: 10px 20px;
-                    background-color: #0078D7;
-                    color: white;
-                    text-decoration: none;
-                    border-radius: 5px;
-                }}
-                a:hover {{ background-color: #005BB5; }}
-            </style>
-        </head>
-        <body>
-            <h1>Admin Dashboard</h1>
-            <section>
-                <h2>System Metrics</h2>
-                <p>Total User Logins: {total_logins}</p>
-                <p>Total PDFs Uploaded: {total_pdfs}</p>
-                <p>Total Recommendations: {total_recommendations}</p>
-                <p>Total Queries: {total_queries}</p>
-            </section>
-            <section>
-                <h3>Most Active Users</h3>
-                <table>
-                    <tr><th>Username</th><th>Queries</th><th>Recommendations</th><th>PDF Uploads</th></tr>
-                    {active_user_list}
-                </table>
-            </section>
-            <section>
-                <h3>Contact Messages</h3>
-                <table><tr><th>Name</th><th>Email</th><th>Message</th><th>Submitted At</th></tr>{message_list}</table>
-            </section>
-            <section>
-                <h3>Feedback</h3>
-                <table><tr><th>Name</th><th>Feature</th><th>Message</th><th>Submitted At</th></tr>{feedback_list}</table>
-            </section>
-        </body>
+    return f'''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Dashboard</title>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+                color: #333;
+                text-align: center;
+            }}
+            h1 {{
+                margin: 20px 0;
+            }}
+            table {{
+                width: 80%;
+                margin: 20px auto;
+                border-collapse: collapse;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }}
+            th, td {{
+                border: 1px solid #ccc;
+                padding: 10px;
+                text-align: left;
+            }}
+            th {{
+                background-color: #0078D7;
+                color: white;
+            }}
+            a {{
+                display: inline-block;
+                margin: 20px 0;
+                padding: 10px 20px;
+                background-color: #0078D7;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+            }}
+            a:hover {{
+                background-color: #005BB5;
+            }}
+        </style>
+    </head>
+    <body>
+        <h1>Admin Dashboard</h1>
+        <section>
+        <h2>Contact Messages</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Submitted At</th>
+            </tr>
+            {message_list}
+        </table>
+        </section>
+        <section>
+        <h2>Feedback</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Feature</th>
+                <th>Message</th>
+                <th>Submitted At</th>
+            </tr>
+            {feedback_list}
+        </table>
+        </section>
         <a href="/">Go to Home</a>
-        </html>
-        '''
-
-    else:
-        cursor.execute("SELECT query, answer, submitted_at FROM user_queries WHERE username = ? ORDER BY submitted_at DESC", (username,))
-        user_queries = cursor.fetchall()
-
-        cursor.execute("SELECT filename, uploaded_at FROM pdf_uploads WHERE username = ? ORDER BY uploaded_at DESC", (username,))
-        user_pdfs = cursor.fetchall()
-
-        cursor.execute("SELECT query, recommendation, timestamp FROM recommendations WHERE username = ? ORDER BY timestamp DESC", (username,))
-        user_recommendations = cursor.fetchall()
-
-        conn.close()
-
-        user_query_list = "".join(f"<tr><td>{q[0]}</td><td>{q[1]}</td><td>{q[2]}</td></tr>" for q in user_queries)
-        user_pdf_list = "".join(f"<tr><td>{p[0]}</td><td>{p[1]}</td></tr>" for p in user_pdfs)
-        user_recommendation_list = "".join(f"<tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>" for r in user_recommendations)
-
-        return f'''
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>User Dashboard</title>
-            <style>
-                body {{
-                    font-family: Arial, sans-serif;
-                    background-color: #f4f4f9;
-                    color: #333;
-                    text-align: center;
-                }}
-                h1 {{ margin: 20px 0; }}
-                table {{
-                    width: 80%;
-                    margin: 20px auto;
-                    border-collapse: collapse;
-                    background: white;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                }}
-                th, td {{
-                    border: 1px solid #ccc;
-                    padding: 10px;
-                    text-align: left;
-                }}
-                th {{ background-color: #0078D7; color: white; }}
-            </style>
-        </head>
-        <body>
-            <h1>User Dashboard</h1>
-            <h2>Welcome, {username}!</h2>
-            <section>
-                <h3>Your Past Questions</h3>
-                <table><tr><th>Question</th><th>Answer</th><th>Asked At</th></tr>{user_query_list}</table>
-            </section>
-            <section>
-                <h3>Your Uploaded PDFs</h3>
-                <table><tr><th>Filename</th><th>Uploaded At</th></tr>{user_pdf_list}</table>
-            </section>
-            <section>
-                <h3>Your Past Recommendations</h3>
-                <table><tr><th>Query</th><th>Recommendation</th><th>Time</th></tr>{user_recommendation_list}</table>
-            </section>
-        </body>
-        <br><a href="/">Back to Home</a>
-        </html>
-        '''
+    </body>
+    </html>
+    '''
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
