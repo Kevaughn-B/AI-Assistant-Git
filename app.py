@@ -31,7 +31,7 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
     #try:
     #    cursor.execute("ALTER TABLE recommendations ADD COLUMN link TEXT")
     #    conn.commit()
-    #    print("✅ Added 'link' column to recommendations table.")
+    #    print("Added 'link' column to recommendations table.")
     #except sqlite3.OperationalError as e:
     #    print("Column may already exist or error occurred:", e)
     #conn.close()

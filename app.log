@@ -2958,3 +2958,249 @@
 2025-03-11 10:41:12,832 - INFO - 127.0.0.1 - - [11/Mar/2025 10:41:12] "GET /dashboard HTTP/1.1" 200 -
 2025-03-11 10:41:15,083 - INFO - User accessed: / | Method: GET
 2025-03-11 10:41:15,083 - INFO - 127.0.0.1 - - [11/Mar/2025 10:41:15] "GET / HTTP/1.1" 200 -
+2025-03-11 10:55:59,063 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-11 10:55:59,068 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-11 10:55:59,068 - INFO -  * Restarting with stat
+2025-03-11 10:56:01,818 - WARNING -  * Debugger is active!
+2025-03-11 10:56:01,828 - INFO -  * Debugger PIN: 561-524-962
+2025-03-14 09:43:33,258 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-14 09:43:33,258 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-14 09:43:33,259 - INFO -  * Restarting with stat
+2025-03-14 09:43:35,029 - WARNING -  * Debugger is active!
+2025-03-14 09:43:35,039 - INFO -  * Debugger PIN: 768-966-025
+2025-03-14 09:44:03,581 - INFO - User accessed: / | Method: GET
+2025-03-14 09:44:03,589 - INFO - 127.0.0.1 - - [14/Mar/2025 09:44:03] "GET / HTTP/1.1" 200 -
+2025-03-14 09:44:03,818 - INFO - User accessed: /apple-touch-icon-precomposed.png | Method: GET
+2025-03-14 09:44:03,818 - WARNING - Page not found: /apple-touch-icon-precomposed.png
+2025-03-14 09:44:03,819 - INFO - 127.0.0.1 - - [14/Mar/2025 09:44:03] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-03-14 09:44:03,821 - INFO - User accessed: /apple-touch-icon.png | Method: GET
+2025-03-14 09:44:03,821 - WARNING - Page not found: /apple-touch-icon.png
+2025-03-14 09:44:03,821 - INFO - 127.0.0.1 - - [14/Mar/2025 09:44:03] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-03-14 09:44:12,705 - INFO - User accessed: /manage_entries | Method: GET
+2025-03-14 09:44:12,707 - INFO - 127.0.0.1 - - [14/Mar/2025 09:44:12] "GET /manage_entries HTTP/1.1" 200 -
+2025-03-14 09:44:54,605 - INFO - User accessed: / | Method: GET
+2025-03-14 09:44:54,607 - INFO - 127.0.0.1 - - [14/Mar/2025 09:44:54] "GET / HTTP/1.1" 200 -
+2025-03-14 09:47:34,044 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/School/Academic AI Project/app.py', reloading
+2025-03-14 09:47:34,321 - INFO -  * Restarting with stat
+2025-03-14 09:47:36,330 - WARNING -  * Debugger is active!
+2025-03-14 09:47:36,338 - INFO -  * Debugger PIN: 768-966-025
+2025-03-14 09:49:53,537 - INFO - User accessed: /search | Method: GET
+2025-03-14 09:49:53,539 - INFO - 127.0.0.1 - - [14/Mar/2025 09:49:53] "GET /search HTTP/1.1" 200 -
+2025-03-14 09:50:03,803 - INFO - User accessed: /search | Method: POST
+2025-03-14 09:50:03,810 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:03] "POST /search HTTP/1.1" 200 -
+2025-03-14 09:50:15,349 - INFO - User accessed: / | Method: GET
+2025-03-14 09:50:15,357 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:15] "GET / HTTP/1.1" 200 -
+2025-03-14 09:50:18,743 - INFO - User accessed: /manage_pdfs | Method: GET
+2025-03-14 09:50:18,744 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:18] "GET /manage_pdfs HTTP/1.1" 200 -
+2025-03-14 09:50:18,759 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:18] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=console.png&s=qrlb69pBXMOYHzSKBhMF HTTP/1.1[0m" 304 -
+2025-03-14 09:50:18,759 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:18] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-14 09:50:18,759 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:18] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-14 09:50:21,633 - INFO - User accessed: /view_text/MATH205_SELF_PACED_REVIEW_AND_DIAGNOSTIC_TEST.pdf | Method: GET
+2025-03-14 09:50:21,635 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:21] "GET /view_text/MATH205_SELF_PACED_REVIEW_AND_DIAGNOSTIC_TEST.pdf HTTP/1.1" 200 -
+2025-03-14 09:50:23,765 - INFO - User accessed: / | Method: GET
+2025-03-14 09:50:23,765 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:23] "GET / HTTP/1.1" 200 -
+2025-03-14 09:50:26,612 - INFO - User accessed: /manage_pdfs | Method: GET
+2025-03-14 09:50:26,613 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:26] "GET /manage_pdfs HTTP/1.1" 200 -
+2025-03-14 09:50:26,615 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:26] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-14 09:50:26,615 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:26] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-14 09:50:26,616 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:26] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=console.png&s=qrlb69pBXMOYHzSKBhMF HTTP/1.1[0m" 304 -
+2025-03-14 09:50:27,943 - INFO - User accessed: /view_text/Software_Project_Documentation_Guidelines.pdf | Method: GET
+2025-03-14 09:50:27,944 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:27] "GET /view_text/Software_Project_Documentation_Guidelines.pdf HTTP/1.1" 200 -
+2025-03-14 09:50:30,866 - INFO - User accessed: / | Method: GET
+2025-03-14 09:50:30,866 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:30] "GET / HTTP/1.1" 200 -
+2025-03-14 09:50:32,688 - INFO - User accessed: /manage_pdfs | Method: GET
+2025-03-14 09:50:32,690 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:32] "GET /manage_pdfs HTTP/1.1" 200 -
+2025-03-14 09:50:32,692 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:32] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=console.png&s=qrlb69pBXMOYHzSKBhMF HTTP/1.1[0m" 304 -
+2025-03-14 09:50:32,693 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:32] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-14 09:50:32,693 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:32] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-14 09:50:33,817 - INFO - User accessed: /delete_pdf/9 | Method: GET
+2025-03-14 09:50:33,824 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:33] "[32mGET /delete_pdf/9 HTTP/1.1[0m" 302 -
+2025-03-14 09:50:33,828 - INFO - User accessed: /manage_pdfs | Method: GET
+2025-03-14 09:50:33,829 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:33] "GET /manage_pdfs HTTP/1.1" 200 -
+2025-03-14 09:50:37,695 - INFO - User accessed: / | Method: GET
+2025-03-14 09:50:37,696 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:37] "GET / HTTP/1.1" 200 -
+2025-03-14 09:50:40,978 - INFO - User accessed: /manage_entries | Method: GET
+2025-03-14 09:50:40,979 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:40] "GET /manage_entries HTTP/1.1" 200 -
+2025-03-14 09:50:45,803 - INFO - User accessed: /delete_query/8 | Method: GET
+2025-03-14 09:50:45,806 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:45] "[32mGET /delete_query/8 HTTP/1.1[0m" 302 -
+2025-03-14 09:50:45,811 - INFO - User accessed: /manage_entries | Method: GET
+2025-03-14 09:50:45,812 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:45] "GET /manage_entries HTTP/1.1" 200 -
+2025-03-14 09:50:48,708 - INFO - User accessed: /delete_recommendation/3 | Method: GET
+2025-03-14 09:50:48,710 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:48] "[32mGET /delete_recommendation/3 HTTP/1.1[0m" 302 -
+2025-03-14 09:50:48,715 - INFO - User accessed: /manage_entries | Method: GET
+2025-03-14 09:50:48,716 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:48] "GET /manage_entries HTTP/1.1" 200 -
+2025-03-14 09:50:50,674 - INFO - User accessed: / | Method: GET
+2025-03-14 09:50:50,674 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:50] "GET / HTTP/1.1" 200 -
+2025-03-14 09:50:57,663 - INFO - User accessed: /dashboard | Method: GET
+2025-03-14 09:50:57,664 - INFO - 127.0.0.1 - - [14/Mar/2025 09:50:57] "GET /dashboard HTTP/1.1" 200 -
+2025-03-14 09:51:09,889 - INFO - User accessed: / | Method: GET
+2025-03-14 09:51:09,889 - INFO - 127.0.0.1 - - [14/Mar/2025 09:51:09] "GET / HTTP/1.1" 200 -
+2025-03-14 09:51:11,561 - INFO - User accessed: /logout | Method: GET
+2025-03-14 09:51:11,562 - INFO - 127.0.0.1 - - [14/Mar/2025 09:51:11] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-03-14 09:51:11,566 - INFO - User accessed: / | Method: GET
+2025-03-14 09:51:11,567 - INFO - 127.0.0.1 - - [14/Mar/2025 09:51:11] "GET / HTTP/1.1" 200 -
+2025-03-14 09:51:12,719 - INFO - User accessed: /login | Method: GET
+2025-03-14 09:51:12,720 - INFO - 127.0.0.1 - - [14/Mar/2025 09:51:12] "GET /login HTTP/1.1" 200 -
+2025-03-14 09:51:17,758 - INFO - User accessed: /login | Method: POST
+2025-03-14 09:51:18,010 - INFO - 127.0.0.1 - - [14/Mar/2025 09:51:18] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-03-14 09:51:18,094 - INFO - User accessed: /dashboard | Method: GET
+2025-03-14 09:51:18,095 - INFO - 127.0.0.1 - - [14/Mar/2025 09:51:18] "GET /dashboard HTTP/1.1" 200 -
+2025-03-14 09:51:43,296 - INFO - User accessed: / | Method: GET
+2025-03-14 09:51:43,297 - INFO - 127.0.0.1 - - [14/Mar/2025 09:51:43] "GET / HTTP/1.1" 200 -
+2025-03-14 09:51:54,966 - INFO - User accessed: /recommend | Method: GET
+2025-03-14 09:51:54,967 - INFO - 127.0.0.1 - - [14/Mar/2025 09:51:54] "GET /recommend HTTP/1.1" 200 -
+2025-03-14 09:52:06,984 - INFO - User accessed: /recommend | Method: POST
+2025-03-14 09:52:09,116 - INFO - 127.0.0.1 - - [14/Mar/2025 09:52:09] "POST /recommend HTTP/1.1" 200 -
+2025-03-14 09:52:29,391 - INFO - User accessed: /recommend | Method: GET
+2025-03-14 09:52:29,392 - INFO - 127.0.0.1 - - [14/Mar/2025 09:52:29] "GET /recommend HTTP/1.1" 200 -
+2025-03-14 09:52:30,994 - INFO - User accessed: /extract_text | Method: GET
+2025-03-14 09:52:30,994 - INFO - 127.0.0.1 - - [14/Mar/2025 09:52:30] "GET /extract_text HTTP/1.1" 200 -
+2025-03-14 09:52:32,855 - INFO - User accessed: /ask | Method: GET
+2025-03-14 09:52:32,855 - INFO - 127.0.0.1 - - [14/Mar/2025 09:52:32] "GET /ask HTTP/1.1" 200 -
+2025-03-14 09:52:34,232 - INFO - User accessed: /contact | Method: GET
+2025-03-14 09:52:34,233 - INFO - 127.0.0.1 - - [14/Mar/2025 09:52:34] "GET /contact HTTP/1.1" 200 -
+2025-03-14 09:52:35,930 - INFO - User accessed: / | Method: GET
+2025-03-14 09:52:35,931 - INFO - 127.0.0.1 - - [14/Mar/2025 09:52:35] "GET / HTTP/1.1" 200 -
+2025-04-06 13:55:37,479 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-04-06 13:55:37,479 - INFO - [33mPress CTRL+C to quit[0m
+2025-04-06 13:55:37,480 - INFO -  * Restarting with stat
+2025-04-06 13:55:41,136 - WARNING -  * Debugger is active!
+2025-04-06 13:55:41,146 - INFO -  * Debugger PIN: 768-966-025
+2025-04-06 13:56:28,307 - INFO - User accessed: / | Method: GET
+2025-04-06 13:56:28,316 - INFO - 127.0.0.1 - - [06/Apr/2025 13:56:28] "GET / HTTP/1.1" 200 -
+2025-04-06 13:56:28,463 - INFO - User accessed: /apple-touch-icon-precomposed.png | Method: GET
+2025-04-06 13:56:28,464 - INFO - User accessed: /apple-touch-icon.png | Method: GET
+2025-04-06 13:56:28,464 - WARNING - Page not found: /apple-touch-icon-precomposed.png
+2025-04-06 13:56:28,464 - INFO - User accessed: /favicon.ico | Method: GET
+2025-04-06 13:56:28,464 - WARNING - Page not found: /apple-touch-icon.png
+2025-04-06 13:56:28,465 - INFO - 127.0.0.1 - - [06/Apr/2025 13:56:28] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-04-06 13:56:28,465 - WARNING - Page not found: /favicon.ico
+2025-04-06 13:56:28,465 - INFO - 127.0.0.1 - - [06/Apr/2025 13:56:28] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-04-06 13:56:28,465 - INFO - 127.0.0.1 - - [06/Apr/2025 13:56:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-06 13:56:33,608 - INFO - User accessed: /contact | Method: GET
+2025-04-06 13:56:33,609 - INFO - 127.0.0.1 - - [06/Apr/2025 13:56:33] "GET /contact HTTP/1.1" 200 -
+2025-04-06 13:56:43,879 - INFO - User accessed: /contact | Method: GET
+2025-04-06 13:56:43,880 - INFO - 127.0.0.1 - - [06/Apr/2025 13:56:43] "GET /contact HTTP/1.1" 200 -
+2025-04-06 13:56:45,229 - INFO - User accessed: /extract_text | Method: GET
+2025-04-06 13:56:45,230 - INFO - 127.0.0.1 - - [06/Apr/2025 13:56:45] "GET /extract_text HTTP/1.1" 200 -
+2025-04-06 13:57:31,364 - INFO - User accessed: /recommend | Method: GET
+2025-04-06 13:57:31,365 - INFO - 127.0.0.1 - - [06/Apr/2025 13:57:31] "GET /recommend HTTP/1.1" 200 -
+2025-04-06 13:57:32,226 - INFO - User accessed: /recommend | Method: GET
+2025-04-06 13:57:32,228 - INFO - 127.0.0.1 - - [06/Apr/2025 13:57:32] "GET /recommend HTTP/1.1" 200 -
+2025-04-06 13:57:32,863 - INFO - User accessed: /ask | Method: GET
+2025-04-06 13:57:32,863 - INFO - 127.0.0.1 - - [06/Apr/2025 13:57:32] "GET /ask HTTP/1.1" 200 -
+2025-04-06 13:57:34,347 - INFO - User accessed: / | Method: GET
+2025-04-06 13:57:34,348 - INFO - 127.0.0.1 - - [06/Apr/2025 13:57:34] "GET / HTTP/1.1" 200 -
+2025-04-06 13:57:34,470 - INFO - User accessed: /apple-touch-icon-precomposed.png | Method: GET
+2025-04-06 13:57:34,470 - WARNING - Page not found: /apple-touch-icon-precomposed.png
+2025-04-06 13:57:34,470 - INFO - User accessed: /apple-touch-icon.png | Method: GET
+2025-04-06 13:57:34,471 - INFO - 127.0.0.1 - - [06/Apr/2025 13:57:34] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-04-06 13:57:34,471 - INFO - User accessed: /favicon.ico | Method: GET
+2025-04-06 13:57:34,471 - WARNING - Page not found: /apple-touch-icon.png
+2025-04-06 13:57:34,472 - WARNING - Page not found: /favicon.ico
+2025-04-06 13:57:34,472 - INFO - 127.0.0.1 - - [06/Apr/2025 13:57:34] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-04-06 13:57:34,472 - INFO - 127.0.0.1 - - [06/Apr/2025 13:57:34] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-06 14:19:24,540 - INFO - User accessed: /search | Method: GET
+2025-04-06 14:19:24,541 - INFO - 127.0.0.1 - - [06/Apr/2025 14:19:24] "GET /search HTTP/1.1" 200 -
+2025-04-06 14:19:26,318 - INFO - User accessed: /manage_pdfs | Method: GET
+2025-04-06 14:19:26,321 - INFO - 127.0.0.1 - - [06/Apr/2025 14:19:26] "GET /manage_pdfs HTTP/1.1" 200 -
+2025-04-06 14:19:26,334 - INFO - 127.0.0.1 - - [06/Apr/2025 14:19:26] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=console.png&s=qrlb69pBXMOYHzSKBhMF HTTP/1.1[0m" 304 -
+2025-04-06 14:19:26,334 - INFO - 127.0.0.1 - - [06/Apr/2025 14:19:26] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-04-06 14:19:26,335 - INFO - 127.0.0.1 - - [06/Apr/2025 14:19:26] "[36mGET /manage_pdfs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-04-06 14:19:28,075 - INFO - User accessed: /manage_entries | Method: GET
+2025-04-06 14:19:28,077 - INFO - 127.0.0.1 - - [06/Apr/2025 14:19:28] "GET /manage_entries HTTP/1.1" 200 -
+2025-04-06 14:19:39,473 - INFO - User accessed: / | Method: GET
+2025-04-06 14:19:39,474 - INFO - 127.0.0.1 - - [06/Apr/2025 14:19:39] "GET / HTTP/1.1" 200 -
+2025-04-06 14:19:39,597 - INFO - User accessed: /apple-touch-icon-precomposed.png | Method: GET
+2025-04-06 14:19:39,597 - INFO - User accessed: /apple-touch-icon.png | Method: GET
+2025-04-06 14:19:39,597 - WARNING - Page not found: /apple-touch-icon-precomposed.png
+2025-04-06 14:19:39,598 - INFO - User accessed: /favicon.ico | Method: GET
+2025-04-06 14:19:39,599 - WARNING - Page not found: /apple-touch-icon.png
+2025-04-06 14:19:39,599 - INFO - 127.0.0.1 - - [06/Apr/2025 14:19:39] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-04-06 14:19:39,599 - WARNING - Page not found: /favicon.ico
+2025-04-06 14:19:39,599 - INFO - 127.0.0.1 - - [06/Apr/2025 14:19:39] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-04-06 14:19:39,599 - INFO - 127.0.0.1 - - [06/Apr/2025 14:19:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-06 14:20:01,627 - INFO - User accessed: /logout | Method: GET
+2025-04-06 14:20:01,629 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:01] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-04-06 14:20:01,637 - INFO - User accessed: / | Method: GET
+2025-04-06 14:20:01,638 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:01] "GET / HTTP/1.1" 200 -
+2025-04-06 14:20:01,759 - INFO - User accessed: /apple-touch-icon-precomposed.png | Method: GET
+2025-04-06 14:20:01,759 - WARNING - Page not found: /apple-touch-icon-precomposed.png
+2025-04-06 14:20:01,759 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:01] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-04-06 14:20:01,760 - INFO - User accessed: /apple-touch-icon.png | Method: GET
+2025-04-06 14:20:01,760 - INFO - User accessed: /favicon.ico | Method: GET
+2025-04-06 14:20:01,760 - WARNING - Page not found: /apple-touch-icon.png
+2025-04-06 14:20:01,761 - WARNING - Page not found: /favicon.ico
+2025-04-06 14:20:01,761 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:01] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-04-06 14:20:01,761 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-06 14:20:03,709 - INFO - User accessed: /dashboard | Method: GET
+2025-04-06 14:20:03,710 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:03] "GET /dashboard HTTP/1.1" 200 -
+2025-04-06 14:20:05,893 - INFO - User accessed: /login | Method: GET
+2025-04-06 14:20:05,894 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:05] "GET /login HTTP/1.1" 200 -
+2025-04-06 14:20:09,059 - INFO - User accessed: / | Method: GET
+2025-04-06 14:20:09,060 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:09] "GET / HTTP/1.1" 200 -
+2025-04-06 14:20:09,186 - INFO - User accessed: /apple-touch-icon-precomposed.png | Method: GET
+2025-04-06 14:20:09,187 - INFO - User accessed: /apple-touch-icon.png | Method: GET
+2025-04-06 14:20:09,187 - WARNING - Page not found: /apple-touch-icon-precomposed.png
+2025-04-06 14:20:09,187 - INFO - User accessed: /favicon.ico | Method: GET
+2025-04-06 14:20:09,188 - WARNING - Page not found: /apple-touch-icon.png
+2025-04-06 14:20:09,188 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:09] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-04-06 14:20:09,188 - WARNING - Page not found: /favicon.ico
+2025-04-06 14:20:09,189 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:09] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-04-06 14:20:09,189 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:09] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-06 14:20:11,875 - INFO - User accessed: / | Method: GET
+2025-04-06 14:20:11,876 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:11] "GET / HTTP/1.1" 200 -
+2025-04-06 14:20:12,000 - INFO - User accessed: /apple-touch-icon-precomposed.png | Method: GET
+2025-04-06 14:20:12,000 - WARNING - Page not found: /apple-touch-icon-precomposed.png
+2025-04-06 14:20:12,000 - INFO - User accessed: /apple-touch-icon.png | Method: GET
+2025-04-06 14:20:12,001 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:12] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-04-06 14:20:12,001 - INFO - User accessed: /favicon.ico | Method: GET
+2025-04-06 14:20:12,001 - WARNING - Page not found: /apple-touch-icon.png
+2025-04-06 14:20:12,001 - WARNING - Page not found: /favicon.ico
+2025-04-06 14:20:12,002 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:12] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-04-06 14:20:12,002 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-06 14:20:45,844 - INFO - User accessed: /login | Method: GET
+2025-04-06 14:20:45,845 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:45] "GET /login HTTP/1.1" 200 -
+2025-04-06 14:20:53,685 - INFO - User accessed: /login | Method: POST
+2025-04-06 14:20:53,927 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:53] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-04-06 14:20:54,026 - INFO - User accessed: /dashboard | Method: GET
+2025-04-06 14:20:54,028 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:54] "GET /dashboard HTTP/1.1" 200 -
+2025-04-06 14:20:59,561 - INFO - User accessed: / | Method: GET
+2025-04-06 14:20:59,562 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:59] "GET / HTTP/1.1" 200 -
+2025-04-06 14:20:59,686 - INFO - User accessed: /apple-touch-icon-precomposed.png | Method: GET
+2025-04-06 14:20:59,687 - WARNING - Page not found: /apple-touch-icon-precomposed.png
+2025-04-06 14:20:59,687 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:59] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-04-06 14:20:59,688 - INFO - User accessed: /apple-touch-icon.png | Method: GET
+2025-04-06 14:20:59,688 - INFO - User accessed: /favicon.ico | Method: GET
+2025-04-06 14:20:59,688 - WARNING - Page not found: /apple-touch-icon.png
+2025-04-06 14:20:59,688 - WARNING - Page not found: /favicon.ico
+2025-04-06 14:20:59,688 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:59] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-04-06 14:20:59,689 - INFO - 127.0.0.1 - - [06/Apr/2025 14:20:59] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-06 14:21:10,190 - INFO - User accessed: /ask | Method: GET
+2025-04-06 14:21:10,191 - INFO - 127.0.0.1 - - [06/Apr/2025 14:21:10] "GET /ask HTTP/1.1" 200 -
+2025-04-06 14:21:35,508 - INFO - User accessed: /ask | Method: POST
+2025-04-06 14:21:36,207 - INFO - 127.0.0.1 - - [06/Apr/2025 14:21:36] "POST /ask HTTP/1.1" 200 -
+2025-04-06 14:33:25,531 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/School/Academic AI Project/app.py', reloading
+2025-04-06 14:33:25,844 - INFO -  * Restarting with stat
+2025-04-06 14:33:28,357 - WARNING -  * Debugger is active!
+2025-04-06 14:33:28,369 - INFO -  * Debugger PIN: 768-966-025
+2025-04-06 14:37:11,251 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/School/Academic AI Project/app.py', reloading
+2025-04-06 14:37:11,546 - INFO -  * Restarting with stat
+2025-04-06 14:37:14,537 - WARNING -  * Debugger is active!
+2025-04-06 14:37:14,545 - INFO -  * Debugger PIN: 768-966-025
+2025-04-06 14:37:43,684 - INFO - User accessed: /ask | Method: GET
+2025-04-06 14:37:43,687 - INFO - 127.0.0.1 - - [06/Apr/2025 14:37:43] "GET /ask HTTP/1.1" 200 -
+2025-04-06 14:37:45,481 - INFO - User accessed: / | Method: GET
+2025-04-06 14:37:45,490 - INFO - 127.0.0.1 - - [06/Apr/2025 14:37:45] "GET / HTTP/1.1" 200 -
+2025-04-06 14:37:45,618 - INFO - User accessed: /apple-touch-icon-precomposed.png | Method: GET
+2025-04-06 14:37:45,619 - INFO - User accessed: /apple-touch-icon.png | Method: GET
+2025-04-06 14:37:45,619 - WARNING - Page not found: /apple-touch-icon-precomposed.png
+2025-04-06 14:37:45,620 - INFO - User accessed: /favicon.ico | Method: GET
+2025-04-06 14:37:45,620 - WARNING - Page not found: /apple-touch-icon.png
+2025-04-06 14:37:45,620 - INFO - 127.0.0.1 - - [06/Apr/2025 14:37:45] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2025-04-06 14:37:45,620 - WARNING - Page not found: /favicon.ico
+2025-04-06 14:37:45,620 - INFO - 127.0.0.1 - - [06/Apr/2025 14:37:45] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2025-04-06 14:37:45,621 - INFO - 127.0.0.1 - - [06/Apr/2025 14:37:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
