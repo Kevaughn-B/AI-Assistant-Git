@@ -3204,3 +3204,14 @@
 2025-04-06 14:37:45,620 - WARNING - Page not found: /favicon.ico
 2025-04-06 14:37:45,620 - INFO - 127.0.0.1 - - [06/Apr/2025 14:37:45] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
 2025-04-06 14:37:45,621 - INFO - 127.0.0.1 - - [06/Apr/2025 14:37:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-21 16:07:49,654 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-21 16:07:49,655 - INFO - [33mPress CTRL+C to quit[0m
+2026-04-21 16:07:49,657 - INFO -  * Restarting with stat
+2026-04-21 16:07:52,166 - WARNING -  * Debugger is active!
+2026-04-21 16:07:52,178 - INFO -  * Debugger PIN: 683-635-208
+2026-04-21 16:08:37,451 - INFO - User accessed: / | Method: GET
+2026-04-21 16:08:37,462 - INFO - 127.0.0.1 - - [21/Apr/2026 16:08:37] "GET / HTTP/1.1" 200 -
+2026-04-21 16:08:37,724 - INFO - User accessed: /favicon.ico | Method: GET
+2026-04-21 16:08:37,724 - WARNING - Page not found: /favicon.ico
+2026-04-21 16:08:37,725 - INFO - 127.0.0.1 - - [21/Apr/2026 16:08:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
