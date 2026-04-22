@@ -5,7 +5,7 @@ class Recommender:
     def search_google(self, query):
         params = {
             "q": query,
-            "api_key": os.environ.get("SERPAPI_KEY"),
+            "api_key": os.getenv("SERPAPI_KEY"),
             "num": 5
         }
 
