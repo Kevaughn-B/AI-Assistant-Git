@@ -1,11 +1,11 @@
 from serpapi import GoogleSearch
-
+import os
 class Recommender:
 
     def search_google(self, query):
         params = {
             "q": query,
-            "api_key": "88248bc38b0671dd178dd716d2a7a17ec20b6830eeadcec0877f15820d4ca303",
+            "api_key": os.environ.get("SERPAPI_KEY"),
             "num": 5
         }
 

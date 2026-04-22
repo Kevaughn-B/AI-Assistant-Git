@@ -1,4 +1,6 @@
 #http://127.0.0.1:5000/
+from dotenv import load_dotenv
+load_dotenv()
 import os
 from qa_system.qa_model import QASystem
 from recommendation_engine.recommender import Recommender
@@ -14,9 +16,8 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-app.secret_key = 'secret_key'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "dev_fallback")
 app.config['UPLOAD_FOLDER'] = "uploads"
-app.config['SECRET_KEY'] = 'your_secret_key'
 
 qa_system = QASystem()
 recommender = Recommender()
@@ -97,6 +98,7 @@ def init_db():
             username TEXT NOT NULL,
             query TEXT NOT NULL,
             recommendation TEXT NOT NULL,
+            link TEXT,
             timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
@@ -1051,12 +1053,20 @@ def recommend_route():
 
         local_results = get_local_recommendations(query)
         google_books_results = search_google_books(query)
-
-        combined_results = recommender.get_recommendations(
+        serp_results = recommender.search_google(query)  # NEW
+        rule_based = recommender.get_recommendations(
             query,
             local_results,
             google_books_results
         )
+
+        # Convert rule-based to same format
+        rule_results = [
+            {"title": r, "link": "#", "type": "Curated"}
+            for r in rule_based
+        ]
+
+        combined_results = local_results + rule_results + serp_results + google_books_results
 
         if combined_results:
             top_result = combined_results[0]
