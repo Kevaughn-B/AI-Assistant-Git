@@ -14,7 +14,7 @@ class QASystem:
         if not question.strip():
             return {"error": "Question cannot be empty."}
         if not context.strip():
-            context = "Please provide context for better accuracy."
+            return {"error": "Context is required for accurate answers."}
 
         try:
             response = self.qa_pipeline({'question': question, 'context': context})

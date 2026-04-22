@@ -4,6 +4,9 @@ import re
 
 class TextProcessor:
     def extract_text_from_pdf(self, pdf_path):
+        if not pdf_path.lower().endswith(".pdf"):
+            return "Invalid file. Please upload a PDF."
+
         try:
             reader = PdfReader(pdf_path)
             text = ""

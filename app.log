@@ -3215,3 +3215,244 @@
 2026-04-21 16:08:37,724 - INFO - User accessed: /favicon.ico | Method: GET
 2026-04-21 16:08:37,724 - WARNING - Page not found: /favicon.ico
 2026-04-21 16:08:37,725 - INFO - 127.0.0.1 - - [21/Apr/2026 16:08:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-21 22:22:31,543 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-21 22:22:31,543 - INFO - [33mPress CTRL+C to quit[0m
+2026-04-21 22:22:31,544 - INFO -  * Restarting with stat
+2026-04-21 22:22:34,153 - WARNING -  * Debugger is active!
+2026-04-21 22:22:34,195 - INFO -  * Debugger PIN: 683-635-208
+2026-04-21 22:22:38,154 - INFO - User accessed: / | Method: GET
+2026-04-21 22:22:38,166 - INFO - 127.0.0.1 - - [21/Apr/2026 22:22:38] "GET / HTTP/1.1" 200 -
+2026-04-21 22:22:38,777 - INFO - User accessed: /favicon.ico | Method: GET
+2026-04-21 22:22:38,777 - WARNING - Page not found: /favicon.ico
+2026-04-21 22:22:38,777 - INFO - 127.0.0.1 - - [21/Apr/2026 22:22:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-21 22:22:55,679 - INFO - User accessed: /contact | Method: GET
+2026-04-21 22:22:55,680 - INFO - 127.0.0.1 - - [21/Apr/2026 22:22:55] "GET /contact HTTP/1.1" 200 -
+2026-04-21 22:23:10,959 - INFO - User accessed: / | Method: GET
+2026-04-21 22:23:10,960 - INFO - 127.0.0.1 - - [21/Apr/2026 22:23:10] "GET / HTTP/1.1" 200 -
+2026-04-21 22:23:12,442 - INFO - User accessed: /dashboard | Method: GET
+2026-04-21 22:23:12,443 - INFO - 127.0.0.1 - - [21/Apr/2026 22:23:12] "GET /dashboard HTTP/1.1" 200 -
+2026-04-21 22:23:14,530 - INFO - User accessed: /login | Method: GET
+2026-04-21 22:23:14,530 - INFO - 127.0.0.1 - - [21/Apr/2026 22:23:14] "GET /login HTTP/1.1" 200 -
+2026-04-21 22:23:21,439 - INFO - User accessed: /login | Method: POST
+2026-04-21 22:23:21,825 - INFO - 127.0.0.1 - - [21/Apr/2026 22:23:21] "POST /login HTTP/1.1" 200 -
+2026-04-21 22:23:29,188 - INFO - User accessed: /login | Method: POST
+2026-04-21 22:23:29,573 - INFO - 127.0.0.1 - - [21/Apr/2026 22:23:29] "POST /login HTTP/1.1" 200 -
+2026-04-21 22:23:37,624 - INFO - User accessed: /login | Method: POST
+2026-04-21 22:23:38,011 - INFO - 127.0.0.1 - - [21/Apr/2026 22:23:38] "POST /login HTTP/1.1" 200 -
+2026-04-21 22:23:45,763 - INFO - User accessed: /login | Method: POST
+2026-04-21 22:23:46,148 - INFO - 127.0.0.1 - - [21/Apr/2026 22:23:46] "POST /login HTTP/1.1" 200 -
+2026-04-21 22:25:00,042 - INFO - User accessed: /login | Method: POST
+2026-04-21 22:25:00,429 - INFO - 127.0.0.1 - - [21/Apr/2026 22:25:00] "POST /login HTTP/1.1" 200 -
+2026-04-21 22:25:10,666 - INFO - User accessed: /login | Method: POST
+2026-04-21 22:25:11,056 - INFO - 127.0.0.1 - - [21/Apr/2026 22:25:11] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-04-21 22:25:11,063 - INFO - User accessed: /dashboard | Method: GET
+2026-04-21 22:25:11,065 - INFO - 127.0.0.1 - - [21/Apr/2026 22:25:11] "GET /dashboard HTTP/1.1" 200 -
+2026-04-21 22:25:20,278 - INFO - User accessed: / | Method: GET
+2026-04-21 22:25:20,281 - INFO - 127.0.0.1 - - [21/Apr/2026 22:25:20] "GET / HTTP/1.1" 200 -
+2026-04-21 22:25:26,600 - INFO - User accessed: /logout | Method: GET
+2026-04-21 22:25:26,601 - INFO - 127.0.0.1 - - [21/Apr/2026 22:25:26] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-04-21 22:25:26,610 - INFO - User accessed: / | Method: GET
+2026-04-21 22:25:26,611 - INFO - 127.0.0.1 - - [21/Apr/2026 22:25:26] "GET / HTTP/1.1" 200 -
+2026-04-21 22:32:16,380 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/Github/AI-Assistant-Git/qa_system/qa_model.py', reloading
+2026-04-21 22:32:16,946 - INFO -  * Restarting with stat
+2026-04-21 22:32:20,642 - WARNING -  * Debugger is active!
+2026-04-21 22:32:20,659 - INFO -  * Debugger PIN: 683-635-208
+2026-04-21 22:32:26,570 - INFO - User accessed: /ask | Method: GET
+2026-04-21 22:32:26,572 - INFO - 127.0.0.1 - - [21/Apr/2026 22:32:26] "GET /ask HTTP/1.1" 200 -
+2026-04-21 22:33:05,465 - INFO - User accessed: /ask | Method: POST
+2026-04-21 22:33:05,465 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:05] "POST /ask HTTP/1.1" 200 -
+2026-04-21 22:33:07,926 - INFO - User accessed: /login | Method: GET
+2026-04-21 22:33:07,926 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:07] "GET /login HTTP/1.1" 200 -
+2026-04-21 22:33:17,492 - INFO - User accessed: /login | Method: POST
+2026-04-21 22:33:17,884 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:17] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-04-21 22:33:17,890 - INFO - User accessed: /dashboard | Method: GET
+2026-04-21 22:33:17,892 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:17] "GET /dashboard HTTP/1.1" 200 -
+2026-04-21 22:33:21,993 - INFO - User accessed: / | Method: GET
+2026-04-21 22:33:22,000 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:22] "GET / HTTP/1.1" 200 -
+2026-04-21 22:33:24,546 - INFO - User accessed: /ask | Method: GET
+2026-04-21 22:33:24,547 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:24] "GET /ask HTTP/1.1" 200 -
+2026-04-21 22:33:43,447 - INFO - User accessed: /ask | Method: POST
+2026-04-21 22:33:43,463 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:43] "[35m[1mPOST /ask HTTP/1.1[0m" 500 -
+2026-04-21 22:33:43,480 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:43] "GET /ask?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-04-21 22:33:43,481 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:43] "GET /ask?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-04-21 22:33:43,488 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:43] "GET /ask?__debugger__=yes&cmd=resource&f=console.png&s=3ribiUyC064EbfI3nXeI HTTP/1.1" 200 -
+2026-04-21 22:33:43,538 - INFO - 127.0.0.1 - - [21/Apr/2026 22:33:43] "GET /ask?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-04-21 22:34:09,670 - INFO - User accessed: /ask | Method: POST
+2026-04-21 22:34:11,022 - INFO - 127.0.0.1 - - [21/Apr/2026 22:34:11] "POST /ask HTTP/1.1" 200 -
+2026-04-21 22:34:17,566 - INFO - User accessed: /ask | Method: GET
+2026-04-21 22:34:17,567 - INFO - 127.0.0.1 - - [21/Apr/2026 22:34:17] "GET /ask HTTP/1.1" 200 -
+2026-04-21 22:34:31,248 - INFO - User accessed: /ask | Method: POST
+2026-04-21 22:34:31,319 - INFO - 127.0.0.1 - - [21/Apr/2026 22:34:31] "POST /ask HTTP/1.1" 200 -
+2026-04-21 22:34:42,959 - INFO - User accessed: /ask | Method: GET
+2026-04-21 22:34:42,960 - INFO - 127.0.0.1 - - [21/Apr/2026 22:34:42] "GET /ask HTTP/1.1" 200 -
+2026-04-21 22:34:59,959 - INFO - User accessed: /ask | Method: POST
+2026-04-21 22:35:00,076 - INFO - 127.0.0.1 - - [21/Apr/2026 22:35:00] "POST /ask HTTP/1.1" 200 -
+2026-04-21 22:35:03,624 - INFO - User accessed: /ask | Method: GET
+2026-04-21 22:35:03,624 - INFO - 127.0.0.1 - - [21/Apr/2026 22:35:03] "GET /ask HTTP/1.1" 200 -
+2026-04-21 22:36:14,968 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/Github/AI-Assistant-Git/recommendation_engine/recommender.py', reloading
+2026-04-21 22:36:15,493 - INFO -  * Restarting with stat
+2026-04-21 22:36:18,989 - WARNING -  * Debugger is active!
+2026-04-21 22:36:19,007 - INFO -  * Debugger PIN: 683-635-208
+2026-04-21 22:36:22,865 - INFO - User accessed: /recommend | Method: GET
+2026-04-21 22:36:22,868 - INFO - 127.0.0.1 - - [21/Apr/2026 22:36:22] "GET /recommend HTTP/1.1" 200 -
+2026-04-21 22:36:32,211 - INFO - User accessed: /recommend | Method: POST
+2026-04-21 22:36:33,348 - INFO - 127.0.0.1 - - [21/Apr/2026 22:36:33] "POST /recommend HTTP/1.1" 200 -
+2026-04-21 22:36:41,162 - INFO - User accessed: /None | Method: GET
+2026-04-21 22:36:41,163 - WARNING - Page not found: /None
+2026-04-21 22:36:41,164 - INFO - 127.0.0.1 - - [21/Apr/2026 22:36:41] "[33mGET /None HTTP/1.1[0m" 404 -
+2026-04-21 22:37:07,194 - INFO - User accessed: /recommend | Method: GET
+2026-04-21 22:37:07,196 - INFO - 127.0.0.1 - - [21/Apr/2026 22:37:07] "GET /recommend HTTP/1.1" 200 -
+2026-04-21 22:37:18,353 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/Github/AI-Assistant-Git/recommendation_engine/recommender.py', reloading
+2026-04-21 22:37:18,869 - INFO -  * Restarting with stat
+2026-04-21 22:37:22,521 - WARNING -  * Debugger is active!
+2026-04-21 22:37:22,539 - INFO -  * Debugger PIN: 683-635-208
+2026-04-21 22:37:26,242 - INFO - User accessed: /recommend | Method: POST
+2026-04-21 22:37:26,791 - INFO - 127.0.0.1 - - [21/Apr/2026 22:37:26] "POST /recommend HTTP/1.1" 200 -
+2026-04-21 22:38:19,429 - INFO - User accessed: /recommend | Method: GET
+2026-04-21 22:38:19,431 - INFO - 127.0.0.1 - - [21/Apr/2026 22:38:19] "GET /recommend HTTP/1.1" 200 -
+2026-04-21 22:38:28,216 - INFO - User accessed: /recommend | Method: POST
+2026-04-21 22:38:28,660 - INFO - 127.0.0.1 - - [21/Apr/2026 22:38:28] "POST /recommend HTTP/1.1" 200 -
+2026-04-21 22:38:41,689 - INFO - User accessed: /recommend | Method: GET
+2026-04-21 22:38:41,690 - INFO - 127.0.0.1 - - [21/Apr/2026 22:38:41] "GET /recommend HTTP/1.1" 200 -
+2026-04-21 22:38:48,876 - INFO - User accessed: /recommend | Method: POST
+2026-04-21 22:38:49,335 - INFO - 127.0.0.1 - - [21/Apr/2026 22:38:49] "POST /recommend HTTP/1.1" 200 -
+2026-04-21 22:38:54,325 - INFO - User accessed: /recommend | Method: GET
+2026-04-21 22:38:54,326 - INFO - 127.0.0.1 - - [21/Apr/2026 22:38:54] "GET /recommend HTTP/1.1" 200 -
+2026-04-21 22:39:00,325 - INFO - User accessed: /recommend | Method: POST
+2026-04-21 22:39:00,733 - INFO - 127.0.0.1 - - [21/Apr/2026 22:39:00] "POST /recommend HTTP/1.1" 200 -
+2026-04-21 22:41:05,219 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/Github/AI-Assistant-Git/media_processing/text_processor.py', reloading
+2026-04-21 22:41:05,725 - INFO -  * Restarting with stat
+2026-04-21 22:41:09,156 - WARNING -  * Debugger is active!
+2026-04-21 22:41:09,218 - INFO -  * Debugger PIN: 683-635-208
+2026-04-21 22:43:06,835 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/Github/AI-Assistant-Git/config.py', reloading
+2026-04-21 22:43:07,395 - INFO -  * Restarting with stat
+2026-04-21 22:43:10,809 - WARNING -  * Debugger is active!
+2026-04-21 22:43:10,827 - INFO -  * Debugger PIN: 683-635-208
+2026-04-21 22:48:47,630 - INFO - User accessed: /recommend | Method: GET
+2026-04-21 22:48:47,632 - INFO - 127.0.0.1 - - [21/Apr/2026 22:48:47] "GET /recommend HTTP/1.1" 200 -
+2026-04-21 22:48:49,509 - INFO - User accessed: / | Method: GET
+2026-04-21 22:48:49,523 - INFO - 127.0.0.1 - - [21/Apr/2026 22:48:49] "GET / HTTP/1.1" 200 -
+2026-04-21 22:48:49,536 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 22:48:49,542 - INFO - 127.0.0.1 - - [21/Apr/2026 22:48:49] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 22:48:58,271 - INFO - User accessed: /contact | Method: GET
+2026-04-21 22:48:58,272 - INFO - 127.0.0.1 - - [21/Apr/2026 22:48:58] "GET /contact HTTP/1.1" 200 -
+2026-04-21 22:49:01,826 - INFO - User accessed: / | Method: GET
+2026-04-21 22:49:01,828 - INFO - 127.0.0.1 - - [21/Apr/2026 22:49:01] "GET / HTTP/1.1" 200 -
+2026-04-21 22:49:01,841 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 22:49:01,844 - INFO - 127.0.0.1 - - [21/Apr/2026 22:49:01] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 22:51:31,789 - INFO - User accessed: /None | Method: GET
+2026-04-21 22:51:31,789 - WARNING - Page not found: /None
+2026-04-21 22:51:31,790 - INFO - 127.0.0.1 - - [21/Apr/2026 22:51:31] "[33mGET /None HTTP/1.1[0m" 404 -
+2026-04-21 22:53:17,641 - INFO -  * Detected change in '/Users/kevaughnbenjamin/Downloads/Code Projects/Github/AI-Assistant-Git/media_processing/text_processor.py', reloading
+2026-04-21 22:53:18,193 - INFO -  * Restarting with stat
+2026-04-21 22:53:21,882 - WARNING -  * Debugger is active!
+2026-04-21 22:53:21,901 - INFO -  * Debugger PIN: 683-635-208
+2026-04-21 22:54:24,169 - INFO - User accessed: /extract_text | Method: GET
+2026-04-21 22:54:24,172 - INFO - 127.0.0.1 - - [21/Apr/2026 22:54:24] "GET /extract_text HTTP/1.1" 200 -
+2026-04-21 22:54:42,254 - INFO - User accessed: /extract_text | Method: POST
+2026-04-21 22:54:42,452 - INFO - 127.0.0.1 - - [21/Apr/2026 22:54:42] "[32mPOST /extract_text HTTP/1.1[0m" 302 -
+2026-04-21 22:54:42,464 - INFO - User accessed: /view_text/Kevaughn_D._Benjamin_-_PA_Resume.pdf | Method: GET
+2026-04-21 22:54:42,465 - INFO - 127.0.0.1 - - [21/Apr/2026 22:54:42] "GET /view_text/Kevaughn_D._Benjamin_-_PA_Resume.pdf HTTP/1.1" 200 -
+2026-04-21 22:55:14,603 - INFO - User accessed: / | Method: GET
+2026-04-21 22:55:14,617 - INFO - 127.0.0.1 - - [21/Apr/2026 22:55:14] "GET / HTTP/1.1" 200 -
+2026-04-21 22:55:14,627 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 22:55:14,636 - INFO - 127.0.0.1 - - [21/Apr/2026 22:55:14] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 22:55:24,317 - INFO - User accessed: / | Method: GET
+2026-04-21 22:55:24,320 - INFO - 127.0.0.1 - - [21/Apr/2026 22:55:24] "GET / HTTP/1.1" 200 -
+2026-04-21 22:55:24,335 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 22:55:24,336 - INFO - 127.0.0.1 - - [21/Apr/2026 22:55:24] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 22:55:27,467 - INFO - User accessed: /contact | Method: GET
+2026-04-21 22:55:27,468 - INFO - 127.0.0.1 - - [21/Apr/2026 22:55:27] "GET /contact HTTP/1.1" 200 -
+2026-04-21 22:55:28,966 - INFO - User accessed: / | Method: GET
+2026-04-21 22:55:28,967 - INFO - 127.0.0.1 - - [21/Apr/2026 22:55:28] "GET / HTTP/1.1" 200 -
+2026-04-21 22:55:28,981 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 22:55:28,983 - INFO - 127.0.0.1 - - [21/Apr/2026 22:55:28] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 22:59:03,288 - INFO - User accessed: /ask | Method: GET
+2026-04-21 22:59:03,290 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:03] "GET /ask HTTP/1.1" 200 -
+2026-04-21 22:59:05,051 - INFO - User accessed: / | Method: GET
+2026-04-21 22:59:05,059 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:05] "GET / HTTP/1.1" 200 -
+2026-04-21 22:59:05,082 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 22:59:05,085 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:05] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 22:59:09,447 - INFO - User accessed: / | Method: GET
+2026-04-21 22:59:09,448 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:09] "GET / HTTP/1.1" 200 -
+2026-04-21 22:59:09,461 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 22:59:09,464 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:09] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 22:59:11,827 - INFO - User accessed: / | Method: GET
+2026-04-21 22:59:11,828 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:11] "GET / HTTP/1.1" 200 -
+2026-04-21 22:59:11,837 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 22:59:11,838 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:11] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 22:59:12,380 - INFO - User accessed: / | Method: GET
+2026-04-21 22:59:12,382 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:12] "GET / HTTP/1.1" 200 -
+2026-04-21 22:59:12,392 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 22:59:12,394 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:12] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 22:59:22,769 - INFO - User accessed: /contact | Method: GET
+2026-04-21 22:59:22,771 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:22] "GET /contact HTTP/1.1" 200 -
+2026-04-21 22:59:24,719 - INFO - User accessed: / | Method: GET
+2026-04-21 22:59:24,720 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:24] "GET / HTTP/1.1" 200 -
+2026-04-21 22:59:25,010 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 22:59:25,011 - INFO - 127.0.0.1 - - [21/Apr/2026 22:59:25] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:02:44,991 - INFO - User accessed: / | Method: GET
+2026-04-21 23:02:44,993 - INFO - 127.0.0.1 - - [21/Apr/2026 23:02:44] "GET / HTTP/1.1" 200 -
+2026-04-21 23:02:45,009 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:02:45,010 - INFO - 127.0.0.1 - - [21/Apr/2026 23:02:45] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:02:45,947 - INFO - User accessed: / | Method: GET
+2026-04-21 23:02:45,948 - INFO - 127.0.0.1 - - [21/Apr/2026 23:02:45] "GET / HTTP/1.1" 200 -
+2026-04-21 23:02:45,957 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:02:45,959 - INFO - 127.0.0.1 - - [21/Apr/2026 23:02:45] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2026-04-21 23:02:52,148 - INFO - User accessed: /recommend | Method: GET
+2026-04-21 23:02:52,151 - INFO - 127.0.0.1 - - [21/Apr/2026 23:02:52] "GET /recommend HTTP/1.1" 200 -
+2026-04-21 23:02:54,402 - INFO - User accessed: /ask | Method: GET
+2026-04-21 23:02:54,403 - INFO - 127.0.0.1 - - [21/Apr/2026 23:02:54] "GET /ask HTTP/1.1" 200 -
+2026-04-21 23:02:55,319 - INFO - User accessed: / | Method: GET
+2026-04-21 23:02:55,320 - INFO - 127.0.0.1 - - [21/Apr/2026 23:02:55] "GET / HTTP/1.1" 200 -
+2026-04-21 23:02:55,333 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:02:55,335 - INFO - 127.0.0.1 - - [21/Apr/2026 23:02:55] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:03:45,742 - INFO - User accessed: / | Method: GET
+2026-04-21 23:03:45,744 - INFO - 127.0.0.1 - - [21/Apr/2026 23:03:45] "GET / HTTP/1.1" 200 -
+2026-04-21 23:03:45,755 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:03:45,757 - INFO - 127.0.0.1 - - [21/Apr/2026 23:03:45] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:04:04,981 - INFO - User accessed: / | Method: GET
+2026-04-21 23:04:04,983 - INFO - 127.0.0.1 - - [21/Apr/2026 23:04:04] "GET / HTTP/1.1" 200 -
+2026-04-21 23:04:04,997 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:04:04,999 - INFO - 127.0.0.1 - - [21/Apr/2026 23:04:04] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:04:31,569 - INFO - User accessed: / | Method: GET
+2026-04-21 23:04:31,572 - INFO - 127.0.0.1 - - [21/Apr/2026 23:04:31] "GET / HTTP/1.1" 200 -
+2026-04-21 23:04:31,870 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:04:31,872 - INFO - 127.0.0.1 - - [21/Apr/2026 23:04:31] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:04:49,947 - INFO - User accessed: / | Method: GET
+2026-04-21 23:04:49,949 - INFO - 127.0.0.1 - - [21/Apr/2026 23:04:49] "GET / HTTP/1.1" 200 -
+2026-04-21 23:04:49,962 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:04:49,963 - INFO - 127.0.0.1 - - [21/Apr/2026 23:04:49] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:06:13,806 - INFO - User accessed: / | Method: GET
+2026-04-21 23:06:13,817 - INFO - 127.0.0.1 - - [21/Apr/2026 23:06:13] "GET / HTTP/1.1" 200 -
+2026-04-21 23:06:13,841 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:06:13,843 - INFO - 127.0.0.1 - - [21/Apr/2026 23:06:13] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:06:25,400 - INFO - User accessed: / | Method: GET
+2026-04-21 23:06:25,402 - INFO - 127.0.0.1 - - [21/Apr/2026 23:06:25] "GET / HTTP/1.1" 200 -
+2026-04-21 23:06:25,417 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:06:25,418 - INFO - 127.0.0.1 - - [21/Apr/2026 23:06:25] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:06:43,783 - INFO - User accessed: / | Method: GET
+2026-04-21 23:06:43,784 - INFO - 127.0.0.1 - - [21/Apr/2026 23:06:43] "GET / HTTP/1.1" 200 -
+2026-04-21 23:06:43,796 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:06:43,797 - INFO - 127.0.0.1 - - [21/Apr/2026 23:06:43] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:06:52,134 - INFO - User accessed: / | Method: GET
+2026-04-21 23:06:52,135 - INFO - 127.0.0.1 - - [21/Apr/2026 23:06:52] "GET / HTTP/1.1" 200 -
+2026-04-21 23:06:52,147 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:06:52,148 - INFO - 127.0.0.1 - - [21/Apr/2026 23:06:52] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:06:59,980 - INFO - User accessed: / | Method: GET
+2026-04-21 23:06:59,982 - INFO - 127.0.0.1 - - [21/Apr/2026 23:06:59] "GET / HTTP/1.1" 200 -
+2026-04-21 23:06:59,994 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:06:59,995 - INFO - 127.0.0.1 - - [21/Apr/2026 23:06:59] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:07:31,161 - INFO - User accessed: / | Method: GET
+2026-04-21 23:07:31,163 - INFO - 127.0.0.1 - - [21/Apr/2026 23:07:31] "GET / HTTP/1.1" 200 -
+2026-04-21 23:07:31,181 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:07:31,183 - INFO - 127.0.0.1 - - [21/Apr/2026 23:07:31] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:07:51,933 - INFO - User accessed: / | Method: GET
+2026-04-21 23:07:51,934 - INFO - 127.0.0.1 - - [21/Apr/2026 23:07:51] "GET / HTTP/1.1" 200 -
+2026-04-21 23:07:51,945 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:07:51,946 - INFO - 127.0.0.1 - - [21/Apr/2026 23:07:51] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-21 23:08:06,149 - INFO - User accessed: / | Method: GET
+2026-04-21 23:08:06,151 - INFO - 127.0.0.1 - - [21/Apr/2026 23:08:06] "GET / HTTP/1.1" 200 -
+2026-04-21 23:08:06,162 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-21 23:08:06,163 - INFO - 127.0.0.1 - - [21/Apr/2026 23:08:06] "GET /static/styles.css HTTP/1.1" 200 -
