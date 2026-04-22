@@ -3546,3 +3546,21 @@
 2026-04-22 00:00:52,492 - INFO - 127.0.0.1 - - [22/Apr/2026 00:00:52] "GET /recommend HTTP/1.1" 200 -
 2026-04-22 00:00:59,689 - INFO - User accessed: /recommend | Method: GET
 2026-04-22 00:00:59,690 - INFO - 127.0.0.1 - - [22/Apr/2026 00:00:59] "GET /recommend HTTP/1.1" 200 -
+2026-04-22 08:57:18,044 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-22 08:57:18,044 - INFO - [33mPress CTRL+C to quit[0m
+2026-04-22 08:57:18,046 - INFO -  * Restarting with stat
+2026-04-22 08:57:20,741 - WARNING -  * Debugger is active!
+2026-04-22 08:57:20,760 - INFO -  * Debugger PIN: 683-635-208
+2026-04-22 08:57:28,001 - INFO - User accessed: / | Method: GET
+2026-04-22 08:57:28,016 - INFO - 127.0.0.1 - - [22/Apr/2026 08:57:28] "GET / HTTP/1.1" 200 -
+2026-04-22 08:57:28,583 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-22 08:57:28,590 - INFO - 127.0.0.1 - - [22/Apr/2026 08:57:28] "GET /static/styles.css HTTP/1.1" 200 -
+2026-04-22 08:57:39,443 - INFO - User accessed: / | Method: GET
+2026-04-22 08:57:39,448 - INFO - 127.0.0.1 - - [22/Apr/2026 08:57:39] "GET / HTTP/1.1" 200 -
+2026-04-22 08:57:39,456 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-22 08:57:39,457 - INFO - 127.0.0.1 - - [22/Apr/2026 08:57:39] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2026-04-22 08:57:59,284 - INFO - User accessed: / | Method: GET
+2026-04-22 08:57:59,286 - INFO - 127.0.0.1 - - [22/Apr/2026 08:57:59] "GET / HTTP/1.1" 200 -
+2026-04-22 08:57:59,294 - INFO - User accessed: /static/styles.css | Method: GET
+2026-04-22 08:57:59,296 - INFO - 127.0.0.1 - - [22/Apr/2026 08:57:59] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
