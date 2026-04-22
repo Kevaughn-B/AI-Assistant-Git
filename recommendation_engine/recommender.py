@@ -1,31 +1,50 @@
+from serpapi import GoogleSearch
+
 class Recommender:
-    def get_recommendations(self, user_query):
-        # Define categories of recommendations
-        recommendations = {
-            "machine learning": [
-                "Machine Learning by Tom M. Mitchell",
-                "Deep Learning by Ian Goodfellow",
-                "Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow by Aurélien Géron"
-            ],
-            "python": [
-                "Automate the Boring Stuff with Python by Al Sweigart",
-                "Python Crash Course by Eric Matthes",
-                "Fluent Python by Luciano Ramalho"
-            ],
-            "data science": [
-                "Data Science for Business by Foster Provost",
-                "Practical Statistics for Data Scientists by Peter Bruce",
-                "Python for Data Analysis by Wes McKinney"
-            ]
+
+    def search_google(self, query):
+        params = {
+            "q": query,
+            "api_key": "88248bc38b0671dd178dd716d2a7a17ec20b6830eeadcec0877f15820d4ca303",
+            "num": 5
         }
 
-        # Convert the query to lowercase for case-insensitive matching
-        user_query_lower = user_query.lower()
+        search = GoogleSearch(params)
+        results = search.get_dict()
 
-        # Check if the query matches any predefined categories
-        for key, rec_list in recommendations.items():
-            if key in user_query_lower:
-                return rec_list
+        output = []
+        for r in results.get("organic_results", []):
+            output.append({
+                "title": r.get("title"),
+                "link": r.get("link"),
+                "type": "Google Search"
+            })
 
-        # If no match, return a default recommendation
-        return ["No recommendations found for your query. Try a different topic."]
+        return output
+
+    def rank_results(self, results, query):
+        ranked = []
+
+        for r in results:
+            score = 0
+
+            if query.lower() in r["title"].lower():
+                score += 2
+
+            if r["type"] == "Google Books":
+                score += 3
+
+            ranked.append((score, r))
+
+        ranked.sort(reverse=True, key=lambda x: x[0])
+
+        return [r[1] for r in ranked]
+
+    def get_recommendations(self, query, local_results, book_results):
+        google_results = self.search_google(query)
+
+        combined = google_results + book_results + local_results
+
+        ranked = self.rank_results(combined, query)
+
+        return ranked
