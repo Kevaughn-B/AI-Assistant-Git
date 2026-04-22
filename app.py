@@ -930,33 +930,6 @@ def answer():
     except Exception as e:
         return jsonify({"error": f"Internal Server Error: {e}"}), 500
 
-def search_duckduckgo(query):
-    url = "https://api.duckduckgo.com/"
-    params = {
-        "q": query,
-        "format": "json",
-        "pretty": 1
-    }
-    response = requests.get(url, params=params)
-    data = response.json()
-    results = []
-    for topic in data.get("RelatedTopics", []):
-        if isinstance(topic, dict) and "Text" in topic and "FirstURL" in topic:
-            results.append({
-                "title": topic["Text"],
-                "link": topic["FirstURL"],
-                "type": "Web Search"
-            })
-        elif isinstance(topic, dict) and "Topics" in topic:
-            for subtopic in topic["Topics"]:
-                if "Text" in subtopic and "FirstURL" in subtopic:
-                    results.append({
-                        "title": subtopic["Text"],
-                        "link": subtopic["FirstURL"],
-                        "type": "Web Search"
-                    })
-    return results
-
 def get_local_recommendations(query):
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
@@ -1077,21 +1050,28 @@ def recommend_route():
         conn.commit()
 
         local_results = get_local_recommendations(query)
-        duckduckgo_results = search_duckduckgo(query)
         google_books_results = search_google_books(query)
 
-        combined_results = local_results + duckduckgo_results + google_books_results
+        combined_results = recommender.get_recommendations(
+            query,
+            local_results,
+            google_books_results
+        )
 
         if combined_results:
-            recommendation_text = combined_results[0]["title"]
-            cursor.execute("INSERT INTO recommendations (username, query, recommendation, link) VALUES (?, ?, ?, ?)", 
-                (username, query, recommendation_text, combined_results[0]["link"]))
+            top_result = combined_results[0]
+            recommendation_text = top_result["title"]
+            recommendation_link = top_result["link"]
+
+            cursor.execute(
+                "INSERT INTO recommendations (username, query, recommendation, link) VALUES (?, ?, ?, ?)", 
+                (username, query, recommendation_text, recommendation_link))
             conn.commit()
         conn.close()
 
         recommendations_html = ''.join(
             f'<li><b>{rec["type"]}:</b> <a href="{rec["link"]}" target="_blank">{rec["title"]}</a></li>' 
-            for rec in combined_results
+            for rec in combined_results[:10]
         )
 
         return f'''
@@ -1699,4 +1679,3 @@ def dashboard():
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
-    
