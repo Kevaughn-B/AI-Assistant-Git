@@ -1,5 +1,6 @@
 # Virtual environment
 venv/
+.venv/
 .env
 .env/
 
@@ -17,6 +18,12 @@ __pycache__/
 
 # Logs
 *.log
+
+# Runtime data and user uploads
+users.db
+data.db
+uploads/*
+!uploads/.gitkeep
 
 # Jupyter
 .ipynb_checkpoints/

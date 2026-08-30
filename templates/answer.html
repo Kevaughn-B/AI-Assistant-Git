@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<section class="panel"><h1>Answer</h1><h2>{{ result.answer }}</h2><p>Confidence: {{ '%.1f'|format(result.confidence * 100) }}%</p><h3>Question</h3><p>{{ question }}</p><a class="button" href="{{ url_for('ask') }}">Ask another</a></section>{% endblock %}

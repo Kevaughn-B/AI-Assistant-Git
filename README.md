@@ -1,56 +1,40 @@
-# AI Assistant (Q&A + Recommendation + PDF Extraction System)
+# AI Academic Assistant
 
-## 🚀 Overview
-This project is a modular AI-powered assistant that combines:
-- Question Answering
-- Text Processing
-- Recommendation Engine
+A Flask application for context-grounded Q&A, academic resource recommendations, and private PDF text extraction.
 
-It demonstrates how machine learning components can be integrated into a web application using Flask.
+## Features
 
----
+- Account-based access with password hashing and CSRF protection
+- Question answering from user-supplied context (RoBERTa SQuAD2)
+- Google Books and optional SerpAPI recommendations
+- PDF text extraction, download, and per-user document management
+- Private dashboards and Q&A search history
 
-## ✨ Features
-- Natural language question answering
-- Content-based recommendation system
-- Text/media processing pipeline
-- Clean modular backend architecture
+## Run locally
 
----
-
-## 🛠 Tech Stack
-- Python (Flask)
-- NLP / Machine Learning
-- HTML, CSS, JavaScript
-
----
-
-## 📸 Demo
-( Will be added soon )
-
----
-
-## ⚙️ Installation
+Requires Python 3.11+.
 
 ```bash
-git clone https://github.com/kevaughn-b/ai-assistant.git
-cd ai-assistant
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-python run.py
+cp .env.example .env
+python3 app.py
 ```
 
-# Notes
+Visit `http://127.0.0.1:5000`. Set a strong `SECRET_KEY` before sharing the app. `SERPAPI_KEY` is optional; without it, recommendations still use Google Books and prior results.
 
-## Usage
-Open browser at http://127.0.0.1:5000
-Enter input
-View processed results
+## Deploy
 
-## Architecture
-routes.py → handles API endpoints
-services/ → business logic (AI modules)
-templates/ → frontend
-static/ → CSS/JS assets
+The repository includes a `Procfile` for Render, Railway, or Heroku-style platforms. Configure these environment variables in the host:
 
-# Author
-Kevaughn Benjamin
+- `SECRET_KEY` — a long random value
+- `SERPAPI_KEY` — optional
+- `ADMIN_USERNAME` — optional username for metrics-only admin access
+- `FLASK_DEBUG=0`
+
+Use `gunicorn app:app` as the start command. The current SQLite and local `uploads/` storage are suitable for a demo only. For a durable production deployment, use managed PostgreSQL and object storage (such as S3) before serving real users.
+
+## Privacy
+
+Runtime databases and uploaded PDFs are intentionally ignored by Git. Do not commit user documents, resumes, secrets, or `.env` files.

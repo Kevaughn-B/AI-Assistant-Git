@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<section class="panel"><h1>{{ file.filename }}</h1><p><a href="{{ url_for('download_pdf', file_id=file.id) }}">Download text</a></p><article class="extracted">{{ file.extracted_text }}</article></section>{% endblock %}

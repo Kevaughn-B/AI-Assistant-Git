@@ -1,11 +1,17 @@
-from serpapi import GoogleSearch
 import os
 class Recommender:
 
     def search_google(self, query):
+        api_key = os.getenv("SERPAPI_KEY")
+        if not api_key:
+            return []
+        try:
+            from serpapi import GoogleSearch
+        except ImportError:
+            return []
         params = {
             "q": query,
-            "api_key": os.getenv("SERPAPI_KEY"),
+            "api_key": api_key,
             "num": 5
         }
 
@@ -42,9 +48,5 @@ class Recommender:
 
     def get_recommendations(self, query, local_results, book_results):
         google_results = self.search_google(query)
-
         combined = google_results + book_results + local_results
-
-        ranked = self.rank_results(combined, query)
-
-        return ranked
+        return self.rank_results(combined, query)

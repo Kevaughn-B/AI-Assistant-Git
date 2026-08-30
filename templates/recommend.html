@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<section class="panel"><h1>Find academic resources</h1><form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label>Topic<input name="query" placeholder="e.g. machine learning books" required></label><button>Find resources</button></form></section>{% endblock %}

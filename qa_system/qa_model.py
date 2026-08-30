@@ -1,14 +1,25 @@
-from transformers import pipeline
-import torch
-
 class QASystem:
+    _shared_instance = None
+
     def __init__(self):
+        # These imports are intentionally lazy: non-Q&A pages should not need
+        # to load a large ML runtime at application startup.
+        from transformers import pipeline
+        import torch
+
         self.device = 0 if torch.cuda.is_available() else -1
         self.qa_pipeline = pipeline(
             "question-answering",
             model="deepset/roberta-base-squad2",
             device=self.device
         )
+
+    @classmethod
+    def instance(cls):
+        """Create the large model once, only when the Q&A feature is used."""
+        if cls._shared_instance is None:
+            cls._shared_instance = cls()
+        return cls._shared_instance
 
     def answer_question(self, question, context):
         if not question.strip():
