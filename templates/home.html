@@ -1,1 +1,21 @@
-{% extends 'base.html' %}{% block content %}<section class="hero"><h1>Study smarter with your academic workspace.</h1><p>Ask context-aware questions, find resources, and extract text from PDFs.</p>{% if session.username %}<a class="button" href="{{ url_for('ask') }}">Ask a question</a>{% else %}<a class="button" href="{{ url_for('signup') }}">Create an account</a>{% endif %}</section><section class="cards"><article><h2>Grounded answers</h2><p>Provide source context and get a direct answer with confidence.</p></article><article><h2>Resource discovery</h2><p>Search Google Books and optional web results in one ranked list.</p></article><article><h2>PDF workspace</h2><p>Extract, read, download, and manage your own document text.</p></article></section>{% endblock %}
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+    <h1>Study smarter with your academic workspace.</h1>
+    <p>Ask context-aware questions, find resources, and extract text from PDFs.</p>
+    <div class="hero-actions">
+        {% if session.username %}
+        <a class="button" href="{{ url_for('ask') }}">Ask a question</a>
+        {% else %}
+        <a class="button" href="{{ url_for('signup') }}">Create an account</a>
+        <a class="button button-secondary" href="{{ url_for('login') }}">Log in</a>
+        {% endif %}
+    </div>
+</section>
+
+<section class="cards">
+    <article><h2>Grounded answers</h2><p>Provide source context and get a direct answer with confidence.</p></article>
+    <article><h2>Resource discovery</h2><p>Search Google Books and optional web results in one ranked list.</p></article>
+    <article><h2>PDF workspace</h2><p>Extract, read, download, and manage your own document text.</p></article>
+</section>
+{% endblock %}
